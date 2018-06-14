@@ -61,7 +61,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
       // [START basic_write]
       self.ref.child("users").child(user.uid).setValue(["username": username])
       // [END basic_write]
-      self.performSegue(withIdentifier: "signIn", sender: nil)
+      self.dismiss(animated: true, completion: nil)
     }
 
   }
@@ -89,7 +89,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
         // Check if user already exists
         guard !snapshot.exists() else {
-          self.performSegue(withIdentifier: "signIn", sender: nil)
+          self.dismiss(animated: true, completion: nil)
           return
         }
 

@@ -17,13 +17,14 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 @objc(RecentPostsViewController)
 class RecentPostsViewController: PostListViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tabBarController?.navigationItem.title = "All Posts"
-    }
+  override func viewDidLoad() {
+      super.viewDidLoad()
+      self.tabBarController?.navigationItem.title = "All Posts"
+  }
     
   override func getQuery() -> DatabaseQuery {
     // [START recent_posts_query]
@@ -32,5 +33,9 @@ class RecentPostsViewController: PostListViewController {
     let recentPostsQuery = (ref?.child("posts").queryLimited(toFirst: 10))!
     // [END recent_posts_query]
     return recentPostsQuery
+  }
+  
+  @IBAction func signOutAction(_ sender: Any) {
+    NotificationCenter.default.post(name: Notification.Name(rawValue: "performSignOut"), object: nil)
   }
 }
