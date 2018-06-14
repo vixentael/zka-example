@@ -20,11 +20,16 @@ import FirebaseDatabase
 
 @objc(RecentPostsViewController)
 class RecentPostsViewController: PostListViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tabBarController?.navigationItem.title = "All Posts"
+    }
+    
   override func getQuery() -> DatabaseQuery {
     // [START recent_posts_query]
     // Last 100 posts, these are automatically the 100 most recent
     // due to sorting by push() keys
-    let recentPostsQuery = (ref?.child("posts").queryLimited(toFirst: 100))!
+    let recentPostsQuery = (ref?.child("posts").queryLimited(toFirst: 10))!
     // [END recent_posts_query]
     return recentPostsQuery
   }

@@ -188,10 +188,10 @@
             </objects>
             <point key="canvasLocation" x="1176" y="1257"/>
         </scene>
-        <!--Recent-->
+        <!--All Posts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="RecentPostsViewController" sceneMemberID="viewController">
+                <viewController title="All Posts" id="BYZ-38-t0r" customClass="RecentPostsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -200,8 +200,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pey-tc-Qes">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pey-tc-Qes">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Z3C-Y5-ZTC"/>
@@ -223,7 +223,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Recent" image="ic_history" id="ZU0-iM-2t0"/>
+                    <tabBarItem key="tabBarItem" title="All Posts" image="ic_history" id="ZU0-iM-2t0"/>
                     <navigationItem key="navigationItem" id="2pf-Ll-vye"/>
                     <connections>
                         <outlet property="tableView" destination="Pey-tc-Qes" id="BPu-ib-I47"/>
@@ -232,12 +232,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1643" y="2132"/>
+            <point key="canvasLocation" x="1642.0289855072465" y="2130.9782608695655"/>
         </scene>
         <!--My Posts-->
         <scene sceneID="ouv-Cp-rbf">
             <objects>
-                <viewController id="5DM-L3-DLB" customClass="MyPostsViewController" sceneMemberID="viewController">
+                <viewController title="My Posts" id="5DM-L3-DLB" customClass="MyPostsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8e1-Fe-Wn0"/>
                         <viewControllerLayoutGuide type="bottom" id="i16-WE-U43"/>
@@ -272,6 +272,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyf-Wm-Dg9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="964" y="2124"/>
+        </scene>
+        <!--Public Keys-->
+        <scene sceneID="rTF-fk-vMS">
+            <objects>
+                <viewController title="Public Keys" id="pBt-pS-p12" customClass="PublicKeysViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4f6-XS-jno"/>
+                        <viewControllerLayoutGuide type="bottom" id="ecu-9E-y8u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qp3-8H-757">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x6j-MI-fe5">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="pBt-pS-p12" id="yhU-uR-T5F"/>
+                                    <outlet property="delegate" destination="pBt-pS-p12" id="9DU-kr-QAQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="x6j-MI-fe5" secondAttribute="trailing" id="2Tu-Rl-XHK"/>
+                            <constraint firstAttribute="bottom" secondItem="x6j-MI-fe5" secondAttribute="bottom" id="VmO-du-O7Z"/>
+                            <constraint firstItem="x6j-MI-fe5" firstAttribute="leading" secondItem="Qp3-8H-757" secondAttribute="leading" id="jjT-mE-UhW"/>
+                            <constraint firstItem="x6j-MI-fe5" firstAttribute="top" secondItem="Qp3-8H-757" secondAttribute="top" id="u4j-Jb-8pE"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Public Keys" image="ic_person" id="pUq-6Y-YD2"/>
+                    <connections>
+                        <outlet property="tableView" destination="x6j-MI-fe5" id="0zH-Cn-BBx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZPO-fE-vkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-399" y="2111"/>
         </scene>
         <!--Post Detail-->
         <scene sceneID="c4t-YX-ILM">
@@ -363,12 +401,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDO-Nm-tyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="832" y="3123"/>
+            <point key="canvasLocation" x="964" y="2905"/>
         </scene>
-        <!--My Top Posts-->
+        <!--Shares-->
         <scene sceneID="cIQ-zE-g3w">
             <objects>
-                <viewController id="hqJ-3B-E9g" customClass="MyTopPostsViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GOV-G4-oaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Shares" id="hqJ-3B-E9g" customClass="MySharesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iwC-ak-Mvx"/>
                         <viewControllerLayoutGuide type="bottom" id="Vf3-1R-IvC"/>
@@ -394,13 +433,12 @@
                             <constraint firstItem="aUP-Sw-C2J" firstAttribute="top" secondItem="LsB-b0-G68" secondAttribute="top" id="vfX-KT-x7U"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Top Posts" image="ic_whatshot" id="f53-xY-Yxg"/>
+                    <tabBarItem key="tabBarItem" title="Shares" image="ic_whatshot" id="f53-xY-Yxg"/>
                     <connections>
                         <outlet property="tableView" destination="aUP-Sw-C2J" id="p4J-1q-AsJ"/>
                         <segue destination="JQY-YR-KkD" kind="show" identifier="detail" id="d9R-RM-J8D"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GOV-G4-oaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="288" y="2111"/>
         </scene>
@@ -421,11 +459,11 @@
             </objects>
             <point key="canvasLocation" x="-1351" y="1257"/>
         </scene>
-        <!--Messages-->
+        <!--Tab Bar Controller-->
         <scene sceneID="gDK-cT-bHb">
             <objects>
                 <tabBarController id="sCu-Va-Qv6" customClass="TabBarController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Messages" id="A59-QW-f9t">
+                    <navigationItem key="navigationItem" id="A59-QW-f9t">
                         <barButtonItem key="backBarButtonItem" title=" " id="9yi-sa-DL1"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="clh-SB-mYL">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -443,6 +481,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="jlU-8P-JXh"/>
                         <segue destination="5DM-L3-DLB" kind="relationship" relationship="viewControllers" id="GF0-kx-sPl"/>
                         <segue destination="hqJ-3B-E9g" kind="relationship" relationship="viewControllers" id="MGj-Go-Wmg"/>
+                        <segue destination="pBt-pS-p12" kind="relationship" relationship="viewControllers" id="ZEz-r3-Dmx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWt-Wa-MOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -456,7 +495,7 @@
         <image name="ic_whatshot" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="d9R-RM-J8D"/>
+        <segue reference="gwX-xQ-7Lk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -18,8 +18,13 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-@objc(MyTopPostsViewController)
-class MyTopPostsViewController: PostListViewController {
+@objc(MySharesViewController)
+class MySharesViewController: PostListViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tabBarController?.navigationItem.title = "Shared Keys"
+    }
+    
   override func getQuery() -> DatabaseQuery {
     // [START my_top_posts_query]
     // My top posts by number of stars
