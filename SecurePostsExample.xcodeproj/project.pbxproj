@@ -32,6 +32,7 @@
 		73611F2C20D2FC7700FFAAAC /* Shares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F2B20D2FC7700FFAAAC /* Shares.swift */; };
 		73611F2E20D2FCC000FFAAAC /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F2D20D2FCC000FFAAAC /* PublicKey.swift */; };
 		73611F3420D2FD2000FFAAAC /* NewShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F3320D2FD2000FFAAAC /* NewShareViewController.swift */; };
+		73611F3620D3082E00FFAAAC /* NewPublicKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F3520D3082E00FFAAAC /* NewPublicKeyViewController.swift */; };
 		B5C03CF4AEBAC2F094559DB2 /* Pods_DatabaseExampleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFCBB07B55CFC8CF69BCB3 /* Pods_DatabaseExampleSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		73611F2B20D2FC7700FFAAAC /* Shares.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shares.swift; sourceTree = "<group>"; };
 		73611F2D20D2FCC000FFAAAC /* PublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
 		73611F3320D2FD2000FFAAAC /* NewShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewShareViewController.swift; path = SecurePostsExample/Shares/NewShareViewController.swift; sourceTree = SOURCE_ROOT; };
+		73611F3520D3082E00FFAAAC /* NewPublicKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPublicKeyViewController.swift; sourceTree = "<group>"; };
 		76A37B622A1A95B17F63D7CE /* Pods-DatabaseExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExampleTests/Pods-DatabaseExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A54A027EBD4DA255DA03849A /* Pods-DatabaseExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExample/Pods-DatabaseExample.debug.xcconfig"; sourceTree = "<group>"; };
 		B2F2D76036E2731A1374BCA1 /* Pods_DatabaseExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				73611F2920D2F87200FFAAAC /* PublicKeysViewController.swift */,
+				73611F3520D3082E00FFAAAC /* NewPublicKeyViewController.swift */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73611F3620D3082E00FFAAAC /* NewPublicKeyViewController.swift in Sources */,
 				10B872C21CDC0AC200C7D214 /* PostDataSource.swift in Sources */,
 				10B872B11CDBFB7300C7D214 /* SignInViewController.swift in Sources */,
 				5F5A53801ADE67D500F81DF0 /* NewPostViewController.swift in Sources */,

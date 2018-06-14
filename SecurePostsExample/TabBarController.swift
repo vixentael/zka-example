@@ -21,15 +21,23 @@ import FirebaseAuth
 @objc(TabBarController)
 class TabBarController: UITabBarController {
 
-  override func didMove(toParentViewController parent: UIViewController?) {
-    if parent == nil {
-      let firebaseAuth = Auth.auth()
-      do {
-        try firebaseAuth.signOut()
-      } catch let signOutError as NSError {
-        print ("Error signing out: %@", signOutError)
+  override func viewDidLoad() {
+      super.viewDidLoad()
+    
+      if Auth.auth().currentUser == nil {
+          self.performSegue(withIdentifier: "signIn", sender: nil)
       }
-
-    }
   }
+    
+//  override func didMove(toParentViewController parent: UIViewController?) {
+//    if parent == nil {
+//      let firebaseAuth = Auth.auth()
+//      do {
+//        try firebaseAuth.signOut()
+//      } catch let signOutError as NSError {
+//        print ("Error signing out: %@", signOutError)
+//      }
+//
+//    }
+//  }
 }

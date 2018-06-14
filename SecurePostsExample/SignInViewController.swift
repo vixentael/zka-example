@@ -35,7 +35,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if Auth.auth().currentUser != nil {
-      self.performSegue(withIdentifier: "signIn", sender: nil)
+      self.dismiss(animated: true, completion: nil)
     }
     ref = Database.database().reference()
   }
