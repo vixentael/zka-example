@@ -36,17 +36,20 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
     // [END create_database_reference]
 
     let doneBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
+    doneBar.isTranslucent = false
+    doneBar.barTintColor = UIColor.purple
     doneBar.autoresizingMask = .flexibleWidth
     let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let done = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(didTapShare))
-    done.tintColor = UIColor(red: 1.0, green: 143.0/255.0, blue: 0.0, alpha: 1.0)
+    let done = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(didTapPost))
+    done.tintColor = UIColor.yellow
     doneBar.items  = [flex, done, flex]
     doneBar.sizeToFit()
+    
     bodyTextView.inputAccessoryView = doneBar
     titleTextField.inputAccessoryView = doneBar
   }
 
-  @IBAction func didTapShare(_ sender: AnyObject) {
+  @IBAction func didTapPost(_ sender: AnyObject) {
     // [START single_value_read]
     let userID = Auth.auth().currentUser?.uid
     ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -76,7 +79,8 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
                 "author": username,
                 "title": title,
                 "body": body,
-                "starCount" : "0"]
+                "starCount" : "0",
+                "timestamp": ServerValue.timestamp()] as [String : Any]
     let childUpdates = ["/posts/\(key)": post,
                         "/user-posts/\(userID)/\(key)/": post]
     ref.updateChildValues(childUpdates)

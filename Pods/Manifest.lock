@@ -30,6 +30,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
+  - GRKOpenSSLFramework (1.0.1.20.4)
   - GTMSessionFetcher/Core (1.1.15)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
@@ -37,12 +38,22 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - themis (0.10.0):
+    - GRKOpenSSLFramework (= 1.0.1.20.4)
+    - themis/core (= 0.10.0)
+    - themis/objcwrapper (= 0.10.0)
+  - themis/core (0.10.0):
+    - GRKOpenSSLFramework (= 1.0.1.20.4)
+  - themis/objcwrapper (0.10.0):
+    - GRKOpenSSLFramework (= 1.0.1.20.4)
+    - themis/core
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - FirebaseUI/Database
+  - themis (= 0.10.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -54,9 +65,11 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseUI
     - GoogleToolboxForMac
+    - GRKOpenSSLFramework
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - themis
 
 SPEC CHECKSUMS:
   Firebase: 25ed0412036d7d008568d1fb4d2e9d81ea8a0a2c
@@ -67,10 +80,12 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 05d779cbb97bd5bd5c51a38a903fc9cfe1b2454a
   FirebaseUI: 5d97d3d5d6a019fc960eb573ea6ce9fb8c310669
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  GRKOpenSSLFramework: b6172cc34db9b999002483878772a4bf2a1687ba
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  themis: f06f5690dbb18276e98f3c8d7c9ba90e8100bd09
 
-PODFILE CHECKSUM: a27432a70600fa457da88e6f896edfeefa8df271
+PODFILE CHECKSUM: 65354888521d5e4c5549d93225076230b84f779a
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

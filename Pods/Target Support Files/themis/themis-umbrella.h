@@ -1,0 +1,80 @@
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif
+
+#import "message.h"
+#import "portable_endian.h"
+#import "secure_cell.h"
+#import "secure_cell_alg.h"
+#import "secure_comparator.h"
+#import "secure_comparator_t.h"
+#import "secure_message.h"
+#import "secure_message_wrapper.h"
+#import "secure_session.h"
+#import "secure_session_peer.h"
+#import "secure_session_t.h"
+#import "secure_session_utils.h"
+#import "sym_enc_message.h"
+#import "themis.h"
+#import "themis_error.h"
+#import "soter.h"
+#import "soter_asym_cipher.h"
+#import "soter_asym_ka.h"
+#import "soter_asym_sign.h"
+#import "soter_container.h"
+#import "soter_crc32.h"
+#import "soter_ec_key.h"
+#import "soter_error.h"
+#import "soter_hash.h"
+#import "soter_hmac.h"
+#import "soter_kdf.h"
+#import "soter_rand.h"
+#import "soter_rsa_key.h"
+#import "soter_rsa_key_pair_gen.h"
+#import "soter_sign_ecdsa.h"
+#import "soter_sign_rsa.h"
+#import "soter_sym.h"
+#import "soter_t.h"
+#import "api.h"
+#import "base.h"
+#import "base2.h"
+#import "d.h"
+#import "d2.h"
+#import "fe.h"
+#import "ge.h"
+#import "ge_add.h"
+#import "ge_madd.h"
+#import "ge_msub.h"
+#import "ge_p2_dbl.h"
+#import "ge_sub.h"
+#import "ge_utils.h"
+#import "pow22523.h"
+#import "pow225521.h"
+#import "sc.h"
+#import "sqrtm1.h"
+#import "soter_ecdsa_common.h"
+#import "soter_engine.h"
+#import "soter_rsa_common.h"
+#import "objcthemis.h"
+#import "scell.h"
+#import "scell_context_imprint.h"
+#import "scell_seal.h"
+#import "scell_token.h"
+#import "scomparator.h"
+#import "serror.h"
+#import "skeygen.h"
+#import "smessage.h"
+#import "ssession.h"
+#import "ssession_transport_interface.h"
+
+FOUNDATION_EXPORT double themisVersionNumber;
+FOUNDATION_EXPORT const unsigned char themisVersionString[];
+
