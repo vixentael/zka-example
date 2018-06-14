@@ -632,7 +632,7 @@
         <scene sceneID="sYJ-Rk-aP7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ckI-NT-ufS" userLabel="Public Keys Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Public Keys" image="ic_person" id="pUq-6Y-YD2"/>
+                    <tabBarItem key="tabBarItem" title="Public Keys" image="ic_public_keys" id="pUq-6Y-YD2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="O8D-Ko-xuG">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -701,7 +701,7 @@
         <scene sceneID="IbI-g6-dTx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x18-aU-F7c" userLabel="Shared Keys Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Shares" image="ic_whatshot" id="f53-xY-Yxg"/>
+                    <tabBarItem key="tabBarItem" title="Shares" image="ic_shared_keys" id="f53-xY-Yxg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PsA-9N-ziN">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -746,7 +746,8 @@
     <resources>
         <image name="ic_history" width="24" height="24"/>
         <image name="ic_person" width="24" height="24"/>
-        <image name="ic_whatshot" width="24" height="24"/>
+        <image name="ic_public_keys" width="24" height="24"/>
+        <image name="ic_shared_keys" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="d9R-RM-J8D"/>
