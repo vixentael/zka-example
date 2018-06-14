@@ -552,11 +552,11 @@
             </objects>
             <point key="canvasLocation" x="964" y="2905"/>
         </scene>
-        <!--Shares-->
+        <!--Shared Keys-->
         <scene sceneID="cIQ-zE-g3w">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOV-G4-oaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController title="Shares" id="hqJ-3B-E9g" customClass="MySharesViewController" sceneMemberID="viewController">
+                <viewController title="Shares" id="hqJ-3B-E9g" userLabel="Shared Keys" customClass="SharedKeysViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iwC-ak-Mvx"/>
                         <viewControllerLayoutGuide type="bottom" id="Vf3-1R-IvC"/>
@@ -687,10 +687,10 @@
             </objects>
             <point key="canvasLocation" x="2778.2608695652175" y="2123.6413043478265"/>
         </scene>
-        <!--Shares Navigation-->
+        <!--Shared Keys Navigation-->
         <scene sceneID="IbI-g6-dTx">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x18-aU-F7c" userLabel="Shares Navigation" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x18-aU-F7c" userLabel="Shared Keys Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Shares" image="ic_whatshot" id="f53-xY-Yxg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PsA-9N-ziN">

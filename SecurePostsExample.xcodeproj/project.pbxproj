@@ -18,7 +18,7 @@
 		10B872BD1CDC072B00C7D214 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872BC1CDC072B00C7D214 /* PostTableViewCell.swift */; };
 		10B872C21CDC0AC200C7D214 /* PostDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C11CDC0AC200C7D214 /* PostDataSource.swift */; };
 		10B872C41CDC11F200C7D214 /* RecentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */; };
-		10B872C61CDC14C800C7D214 /* MySharesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C51CDC14C800C7D214 /* MySharesViewController.swift */; };
+		10B872C61CDC14C800C7D214 /* SharedKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C51CDC14C800C7D214 /* SharedKeysViewController.swift */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* NewPostViewController.swift */; };
 		73611F0720D2DE0D00FFAAAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73611F0520D2DE0D00FFAAAC /* GoogleService-Info.plist */; };
@@ -50,7 +50,7 @@
 		10B872BC1CDC072B00C7D214 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		10B872C11CDC0AC200C7D214 /* PostDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDataSource.swift; sourceTree = "<group>"; };
 		10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPostsViewController.swift; sourceTree = "<group>"; };
-		10B872C51CDC14C800C7D214 /* MySharesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySharesViewController.swift; sourceTree = "<group>"; };
+		10B872C51CDC14C800C7D214 /* SharedKeysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedKeysViewController.swift; sourceTree = "<group>"; };
 		1C2256AF48938614DEA5F1E3 /* Pods-DatabaseExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExample/Pods-DatabaseExample.release.xcconfig"; sourceTree = "<group>"; };
 		41B3315A8884331F7BA464A0 /* Pods-DatabaseExampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExampleSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExampleSwift/Pods-DatabaseExampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		4E4C6EB7787644F20F8CA851 /* Pods-DatabaseExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExampleTests/Pods-DatabaseExampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		73611F3220D2FD0400FFAAAC /* Shares */ = {
 			isa = PBXGroup;
 			children = (
-				10B872C51CDC14C800C7D214 /* MySharesViewController.swift */,
+				10B872C51CDC14C800C7D214 /* SharedKeysViewController.swift */,
 				73611F3320D2FD2000FFAAAC /* NewShareViewController.swift */,
 			);
 			path = Shares;
@@ -361,7 +361,7 @@
 				73611F2820D2F48100FFAAAC /* UIViewController+Alerts.m in Sources */,
 				103685821CDD3B13004DC149 /* PostDetailTableViewController.swift in Sources */,
 				73611F3420D2FD2000FFAAAC /* NewShareViewController.swift in Sources */,
-				10B872C61CDC14C800C7D214 /* MySharesViewController.swift in Sources */,
+				10B872C61CDC14C800C7D214 /* SharedKeysViewController.swift in Sources */,
 				10B872C41CDC11F200C7D214 /* RecentPostsViewController.swift in Sources */,
 				10B872BD1CDC072B00C7D214 /* PostTableViewCell.swift in Sources */,
 				10B872B41CDBFFA800C7D214 /* PostListViewController.swift in Sources */,

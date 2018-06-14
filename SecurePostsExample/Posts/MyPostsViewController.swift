@@ -20,11 +20,7 @@ import FirebaseDatabase
 
 @objc(MyPostsViewController)
 class MyPostsViewController: PostListViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tabBarController?.navigationItem.title = "My Posts"
-    }
-    
+
   override func getQuery() -> DatabaseQuery {
     return (ref?.child("user-posts").child(getUid()))!
   }
