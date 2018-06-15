@@ -35,6 +35,8 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   var commentsRef: DatabaseReference!
   var refHandle: DatabaseHandle?
 
+  var encryptionEngine = EncryptionEngine()
+  
   // UITextViewDelegate protocol method
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
@@ -151,7 +153,20 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         let imageName = post.stars == nil || post.stars![uid] == nil ? "ic_star_border" : "ic_star"
         postcell.authorLabel.text = post.author
         postcell.postTitle.text = post.title
-        postcell.postBody.text = post.body
+        
+        // DECRYPT BODY:
+        var decryptedBody = post.body
+        do {
+          decryptedBody = try self.encryptionEngine.decryptOwnPost(encryptedPost: decryptedBody)
+        } catch {
+          // error ¯\_(ツ)_/¯
+          // was printed to console
+          // can't decrypt? fine, use as is
+          decryptedBody = post.body
+        }
+  
+        postcell.postBody.text = decryptedBody
+        
         postcell.starButton.setImage(UIImage(named: imageName), for: .normal)
         if let starCount = post.starCount {
           postcell.numStarsLabel.text = "\(starCount)"

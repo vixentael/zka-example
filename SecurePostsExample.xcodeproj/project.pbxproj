@@ -34,6 +34,7 @@
 		73611F6320D323E300FFAAAC /* PostDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F5120D323E300FFAAAC /* PostDataSource.swift */; };
 		73611F6620D3241000FFAAAC /* SharedKeyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73611F6520D3241000FFAAAC /* SharedKeyTableViewCell.xib */; };
 		73611F6820D3242A00FFAAAC /* SharedKeyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F6720D3242A00FFAAAC /* SharedKeyTableViewCell.swift */; };
+		73611F6B20D3CA0400FFAAAC /* EncryptionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F6A20D3CA0400FFAAAC /* EncryptionEngine.swift */; };
 		8CCE13CD665DDFA1445BB3A2 /* Pods_SecurePostsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE920E8B1D318D11BC2B666 /* Pods_SecurePostsExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		73611F5120D323E300FFAAAC /* PostDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDataSource.swift; sourceTree = "<group>"; };
 		73611F6520D3241000FFAAAC /* SharedKeyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharedKeyTableViewCell.xib; sourceTree = "<group>"; };
 		73611F6720D3242A00FFAAAC /* SharedKeyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedKeyTableViewCell.swift; sourceTree = "<group>"; };
+		73611F6A20D3CA0400FFAAAC /* EncryptionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionEngine.swift; sourceTree = "<group>"; };
 		AEE920E8B1D318D11BC2B666 /* Pods_SecurePostsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecurePostsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D03378B536F777E174192EBE /* Pods-SecurePostsExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurePostsExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +144,7 @@
 			children = (
 				73611F0520D2DE0D00FFAAAC /* GoogleService-Info.plist */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
+				73611F6920D3C9EA00FFAAAC /* Encryption */,
 				73611F3B20D323E300FFAAAC /* Models */,
 				73611F4820D323E300FFAAAC /* Posts */,
 				73611F4520D323E300FFAAAC /* Public Keys */,
@@ -213,6 +216,14 @@
 				73611F6720D3242A00FFAAAC /* SharedKeyTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		73611F6920D3C9EA00FFAAAC /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				73611F6A20D3CA0400FFAAAC /* EncryptionEngine.swift */,
+			);
+			path = Encryption;
 			sourceTree = "<group>";
 		};
 		B1CC1AAB0A285466581AF9C6 /* Frameworks */ = {
@@ -352,6 +363,7 @@
 			files = (
 				73611F6820D3242A00FFAAAC /* SharedKeyTableViewCell.swift in Sources */,
 				73611F6320D323E300FFAAAC /* PostDataSource.swift in Sources */,
+				73611F6B20D3CA0400FFAAAC /* EncryptionEngine.swift in Sources */,
 				73611F5C20D323E300FFAAAC /* PostListViewController.swift in Sources */,
 				73611F5220D323E300FFAAAC /* PublicKey.swift in Sources */,
 				73611F5720D323E300FFAAAC /* NewShareViewController.swift in Sources */,
