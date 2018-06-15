@@ -7,59 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		103685821CDD3B13004DC149 /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */; };
 		1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073FE0F1CE2D27700E2F73F /* TabBarController.swift */; };
-		10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872AD1CDBFB1F00C7D214 /* MyPostsViewController.swift */; };
 		10B872B11CDBFB7300C7D214 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872B01CDBFB7300C7D214 /* SignInViewController.swift */; };
-		10B872B41CDBFFA800C7D214 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872B31CDBFFA800C7D214 /* PostListViewController.swift */; };
-		10B872B71CDC044500C7D214 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872B61CDC044500C7D214 /* Post.swift */; };
-		10B872B91CDC056B00C7D214 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872B81CDC056B00C7D214 /* User.swift */; };
-		10B872BB1CDC059F00C7D214 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872BA1CDC059F00C7D214 /* Comment.swift */; };
-		10B872BD1CDC072B00C7D214 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872BC1CDC072B00C7D214 /* PostTableViewCell.swift */; };
-		10B872C21CDC0AC200C7D214 /* PostDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C11CDC0AC200C7D214 /* PostDataSource.swift */; };
-		10B872C41CDC11F200C7D214 /* RecentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */; };
-		10B872C61CDC14C800C7D214 /* SharedKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872C51CDC14C800C7D214 /* SharedKeysViewController.swift */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
-		5F5A53801ADE67D500F81DF0 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* NewPostViewController.swift */; };
 		73611F0720D2DE0D00FFAAAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73611F0520D2DE0D00FFAAAC /* GoogleService-Info.plist */; };
-		73611F1D20D2F33A00FFAAAC /* logo1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 73611F1720D2F33900FFAAAC /* logo1024.png */; };
-		73611F1E20D2F33A00FFAAAC /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73611F1820D2F33900FFAAAC /* PostTableViewCell.xib */; };
 		73611F1F20D2F33A00FFAAAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73611F1920D2F33900FFAAAC /* Images.xcassets */; };
 		73611F2120D2F33A00FFAAAC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73611F1B20D2F33A00FFAAAC /* LaunchScreen.xib */; };
 		73611F2420D2F38400FFAAAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73611F2220D2F38300FFAAAC /* Main.storyboard */; };
 		73611F2820D2F48100FFAAAC /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 73611F2620D2F48100FFAAAC /* UIViewController+Alerts.m */; };
-		73611F2A20D2F87200FFAAAC /* PublicKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F2920D2F87200FFAAAC /* PublicKeysViewController.swift */; };
-		73611F2C20D2FC7700FFAAAC /* Shares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F2B20D2FC7700FFAAAC /* Shares.swift */; };
-		73611F2E20D2FCC000FFAAAC /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F2D20D2FCC000FFAAAC /* PublicKey.swift */; };
-		73611F3420D2FD2000FFAAAC /* NewShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F3320D2FD2000FFAAAC /* NewShareViewController.swift */; };
-		73611F3620D3082E00FFAAAC /* NewPublicKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F3520D3082E00FFAAAC /* NewPublicKeyViewController.swift */; };
-		B5C03CF4AEBAC2F094559DB2 /* Pods_DatabaseExampleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFCBB07B55CFC8CF69BCB3 /* Pods_DatabaseExampleSwift.framework */; };
+		73611F5220D323E300FFAAAC /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F3C20D323E300FFAAAC /* PublicKey.swift */; };
+		73611F5320D323E300FFAAAC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F3D20D323E300FFAAAC /* Comment.swift */; };
+		73611F5420D323E300FFAAAC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F3E20D323E300FFAAAC /* User.swift */; };
+		73611F5520D323E300FFAAAC /* SharedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F3F20D323E300FFAAAC /* SharedKey.swift */; };
+		73611F5620D323E300FFAAAC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4020D323E300FFAAAC /* Post.swift */; };
+		73611F5720D323E300FFAAAC /* NewShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4220D323E300FFAAAC /* NewShareViewController.swift */; };
+		73611F5920D323E300FFAAAC /* SharedKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4420D323E300FFAAAC /* SharedKeysViewController.swift */; };
+		73611F5A20D323E300FFAAAC /* PublicKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4620D323E300FFAAAC /* PublicKeysViewController.swift */; };
+		73611F5B20D323E300FFAAAC /* NewPublicKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4720D323E300FFAAAC /* NewPublicKeyViewController.swift */; };
+		73611F5C20D323E300FFAAAC /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4920D323E300FFAAAC /* PostListViewController.swift */; };
+		73611F5D20D323E300FFAAAC /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4A20D323E300FFAAAC /* NewPostViewController.swift */; };
+		73611F5E20D323E300FFAAAC /* RecentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4B20D323E300FFAAAC /* RecentPostsViewController.swift */; };
+		73611F5F20D323E300FFAAAC /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4C20D323E300FFAAAC /* MyPostsViewController.swift */; };
+		73611F6020D323E300FFAAAC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F4E20D323E300FFAAAC /* PostTableViewCell.swift */; };
+		73611F6120D323E300FFAAAC /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73611F4F20D323E300FFAAAC /* PostTableViewCell.xib */; };
+		73611F6220D323E300FFAAAC /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F5020D323E300FFAAAC /* PostDetailTableViewController.swift */; };
+		73611F6320D323E300FFAAAC /* PostDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F5120D323E300FFAAAC /* PostDataSource.swift */; };
+		73611F6620D3241000FFAAAC /* SharedKeyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73611F6520D3241000FFAAAC /* SharedKeyTableViewCell.xib */; };
+		73611F6820D3242A00FFAAAC /* SharedKeyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F6720D3242A00FFAAAC /* SharedKeyTableViewCell.swift */; };
+		8CCE13CD665DDFA1445BB3A2 /* Pods_SecurePostsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE920E8B1D318D11BC2B666 /* Pods_SecurePostsExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D9A8B1EB8709B9E1357EC55 /* Pods_DatabaseExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0EF8D9F39C94803383FA4B6D /* Pods-DatabaseExampleSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExampleSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExampleSwift/Pods-DatabaseExampleSwift.release.xcconfig"; sourceTree = "<group>"; };
-		103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
 		1073FE0F1CE2D27700E2F73F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		10B872AD1CDBFB1F00C7D214 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 		10B872B01CDBFB7300C7D214 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		10B872B31CDBFFA800C7D214 /* PostListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
-		10B872B61CDC044500C7D214 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		10B872B81CDC056B00C7D214 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		10B872BA1CDC059F00C7D214 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		10B872BC1CDC072B00C7D214 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		10B872C11CDC0AC200C7D214 /* PostDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDataSource.swift; sourceTree = "<group>"; };
-		10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPostsViewController.swift; sourceTree = "<group>"; };
-		10B872C51CDC14C800C7D214 /* SharedKeysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedKeysViewController.swift; sourceTree = "<group>"; };
-		1C2256AF48938614DEA5F1E3 /* Pods-DatabaseExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExample/Pods-DatabaseExample.release.xcconfig"; sourceTree = "<group>"; };
-		41B3315A8884331F7BA464A0 /* Pods-DatabaseExampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExampleSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExampleSwift/Pods-DatabaseExampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
-		4E4C6EB7787644F20F8CA851 /* Pods-DatabaseExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExampleTests/Pods-DatabaseExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		1930BE5C00D48AC26C5F2395 /* Pods-SecurePostsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurePostsExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample.release.xcconfig"; sourceTree = "<group>"; };
 		5F5A53791ADE67D500F81DF0 /* SecurePostsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurePostsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5F5A537F1ADE67D500F81DF0 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		73611F0520D2DE0D00FFAAAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		73611F1720D2F33900FFAAAC /* logo1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo1024.png; sourceTree = "<group>"; };
-		73611F1820D2F33900FFAAAC /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostTableViewCell.xib; path = SecurePostsExample/PostTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		73611F1920D2F33900FFAAAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SecurePostsExample/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		73611F1A20D2F33A00FFAAAC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SecurePostsExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		73611F1B20D2F33A00FFAAAC /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = SecurePostsExample/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
@@ -67,15 +51,27 @@
 		73611F2520D2F41500FFAAAC /* SecurePostsExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SecurePostsExample-Bridging-Header.h"; path = "SecurePostsExample/SecurePostsExample-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		73611F2620D2F48100FFAAAC /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Alerts.m"; path = "SecurePostsExample/UIViewController+Alerts.m"; sourceTree = SOURCE_ROOT; };
 		73611F2720D2F48100FFAAAC /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Alerts.h"; path = "SecurePostsExample/UIViewController+Alerts.h"; sourceTree = SOURCE_ROOT; };
-		73611F2920D2F87200FFAAAC /* PublicKeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeysViewController.swift; sourceTree = "<group>"; };
-		73611F2B20D2FC7700FFAAAC /* Shares.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shares.swift; sourceTree = "<group>"; };
-		73611F2D20D2FCC000FFAAAC /* PublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
-		73611F3320D2FD2000FFAAAC /* NewShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewShareViewController.swift; path = SecurePostsExample/Shares/NewShareViewController.swift; sourceTree = SOURCE_ROOT; };
-		73611F3520D3082E00FFAAAC /* NewPublicKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPublicKeyViewController.swift; sourceTree = "<group>"; };
-		76A37B622A1A95B17F63D7CE /* Pods-DatabaseExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExampleTests/Pods-DatabaseExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A54A027EBD4DA255DA03849A /* Pods-DatabaseExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseExample/Pods-DatabaseExample.debug.xcconfig"; sourceTree = "<group>"; };
-		B2F2D76036E2731A1374BCA1 /* Pods_DatabaseExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9BFCBB07B55CFC8CF69BCB3 /* Pods_DatabaseExampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseExampleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73611F3C20D323E300FFAAAC /* PublicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
+		73611F3D20D323E300FFAAAC /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		73611F3E20D323E300FFAAAC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		73611F3F20D323E300FFAAAC /* SharedKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedKey.swift; sourceTree = "<group>"; };
+		73611F4020D323E300FFAAAC /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		73611F4220D323E300FFAAAC /* NewShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewShareViewController.swift; sourceTree = "<group>"; };
+		73611F4420D323E300FFAAAC /* SharedKeysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedKeysViewController.swift; sourceTree = "<group>"; };
+		73611F4620D323E300FFAAAC /* PublicKeysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicKeysViewController.swift; sourceTree = "<group>"; };
+		73611F4720D323E300FFAAAC /* NewPublicKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPublicKeyViewController.swift; sourceTree = "<group>"; };
+		73611F4920D323E300FFAAAC /* PostListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
+		73611F4A20D323E300FFAAAC /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		73611F4B20D323E300FFAAAC /* RecentPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPostsViewController.swift; sourceTree = "<group>"; };
+		73611F4C20D323E300FFAAAC /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
+		73611F4E20D323E300FFAAAC /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		73611F4F20D323E300FFAAAC /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		73611F5020D323E300FFAAAC /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
+		73611F5120D323E300FFAAAC /* PostDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDataSource.swift; sourceTree = "<group>"; };
+		73611F6520D3241000FFAAAC /* SharedKeyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharedKeyTableViewCell.xib; sourceTree = "<group>"; };
+		73611F6720D3242A00FFAAAC /* SharedKeyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedKeyTableViewCell.swift; sourceTree = "<group>"; };
+		AEE920E8B1D318D11BC2B666 /* Pods_SecurePostsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecurePostsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D03378B536F777E174192EBE /* Pods-SecurePostsExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurePostsExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5C03CF4AEBAC2F094559DB2 /* Pods_DatabaseExampleSwift.framework in Frameworks */,
+				8CCE13CD665DDFA1445BB3A2 /* Pods_SecurePostsExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,25 +89,19 @@
 		10B872AF1CDBFB2700C7D214 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				73611F3220D2FD0400FFAAAC /* Shares */,
-				73611F3120D2FCFA00FFAAAC /* Keys */,
-				73611F2F20D2FCDA00FFAAAC /* Posts */,
 				10B872B01CDBFB7300C7D214 /* SignInViewController.swift */,
 				1073FE0F1CE2D27700E2F73F /* TabBarController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		10B872B51CDC041C00C7D214 /* Models */ = {
+		1F9543D2EE1A12DB4676B55F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				10B872B61CDC044500C7D214 /* Post.swift */,
-				10B872B81CDC056B00C7D214 /* User.swift */,
-				10B872BA1CDC059F00C7D214 /* Comment.swift */,
-				73611F2B20D2FC7700FFAAAC /* Shares.swift */,
-				73611F2D20D2FCC000FFAAAC /* PublicKey.swift */,
+				D03378B536F777E174192EBE /* Pods-SecurePostsExample.debug.xcconfig */,
+				1930BE5C00D48AC26C5F2395 /* Pods-SecurePostsExample.release.xcconfig */,
 			);
-			name = Models;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		5F5A53431ADE670C00F81DF0 = {
@@ -119,8 +109,8 @@
 			children = (
 				5F5A537A1ADE67D500F81DF0 /* SecurePostsExample */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
-				B3B48D96924F48D7E5EABDB8 /* Pods */,
-				6B0582F224390D59F23D6926 /* Frameworks */,
+				1F9543D2EE1A12DB4676B55F /* Pods */,
+				B1CC1AAB0A285466581AF9C6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -139,15 +129,12 @@
 				73611F2720D2F48100FFAAAC /* UIViewController+Alerts.h */,
 				73611F2620D2F48100FFAAAC /* UIViewController+Alerts.m */,
 				73611F2520D2F41500FFAAAC /* SecurePostsExample-Bridging-Header.h */,
-				73611F1620D2F33900FFAAAC /* assets */,
 				73611F1920D2F33900FFAAAC /* Images.xcassets */,
 				73611F1A20D2F33A00FFAAAC /* Info.plist */,
 				73611F1B20D2F33A00FFAAAC /* LaunchScreen.xib */,
-				73611F1820D2F33900FFAAAC /* PostTableViewCell.xib */,
 				73611F2220D2F38300FFAAAC /* Main.storyboard */,
 			);
 			name = "Supporting Files";
-			path = DatabaseExample;
 			sourceTree = "<group>";
 		};
 		5F5A537A1ADE67D500F81DF0 /* SecurePostsExample */ = {
@@ -155,75 +142,85 @@
 			children = (
 				73611F0520D2DE0D00FFAAAC /* GoogleService-Info.plist */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
-				10B872BC1CDC072B00C7D214 /* PostTableViewCell.swift */,
-				10B872C11CDC0AC200C7D214 /* PostDataSource.swift */,
+				73611F3B20D323E300FFAAAC /* Models */,
+				73611F4820D323E300FFAAAC /* Posts */,
+				73611F4520D323E300FFAAAC /* Public Keys */,
+				73611F4120D323E300FFAAAC /* SharedKeys */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
 				10B872AF1CDBFB2700C7D214 /* ViewControllers */,
-				10B872B51CDC041C00C7D214 /* Models */,
 			);
 			path = SecurePostsExample;
 			sourceTree = "<group>";
 		};
-		6B0582F224390D59F23D6926 /* Frameworks */ = {
+		73611F3B20D323E300FFAAAC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0D9A8B1EB8709B9E1357EC55 /* Pods_DatabaseExample.framework */,
-				D9BFCBB07B55CFC8CF69BCB3 /* Pods_DatabaseExampleSwift.framework */,
-				B2F2D76036E2731A1374BCA1 /* Pods_DatabaseExampleTests.framework */,
+				73611F3C20D323E300FFAAAC /* PublicKey.swift */,
+				73611F3D20D323E300FFAAAC /* Comment.swift */,
+				73611F3E20D323E300FFAAAC /* User.swift */,
+				73611F3F20D323E300FFAAAC /* SharedKey.swift */,
+				73611F4020D323E300FFAAAC /* Post.swift */,
 			);
-			name = Frameworks;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		73611F1620D2F33900FFAAAC /* assets */ = {
+		73611F4120D323E300FFAAAC /* SharedKeys */ = {
 			isa = PBXGroup;
 			children = (
-				73611F1720D2F33900FFAAAC /* logo1024.png */,
+				73611F6420D3241000FFAAAC /* Cell */,
+				73611F4220D323E300FFAAAC /* NewShareViewController.swift */,
+				73611F4420D323E300FFAAAC /* SharedKeysViewController.swift */,
 			);
-			name = assets;
-			path = SecurePostsExample/assets;
-			sourceTree = SOURCE_ROOT;
+			path = SharedKeys;
+			sourceTree = "<group>";
 		};
-		73611F2F20D2FCDA00FFAAAC /* Posts */ = {
+		73611F4520D323E300FFAAAC /* Public Keys */ = {
 			isa = PBXGroup;
 			children = (
-				5F5A537F1ADE67D500F81DF0 /* NewPostViewController.swift */,
-				10B872AD1CDBFB1F00C7D214 /* MyPostsViewController.swift */,
-				10B872B31CDBFFA800C7D214 /* PostListViewController.swift */,
-				10B872C31CDC11F200C7D214 /* RecentPostsViewController.swift */,
-				103685811CDD3B13004DC149 /* PostDetailTableViewController.swift */,
+				73611F4620D323E300FFAAAC /* PublicKeysViewController.swift */,
+				73611F4720D323E300FFAAAC /* NewPublicKeyViewController.swift */,
+			);
+			path = "Public Keys";
+			sourceTree = "<group>";
+		};
+		73611F4820D323E300FFAAAC /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				73611F4D20D323E300FFAAAC /* Cell */,
+				73611F4920D323E300FFAAAC /* PostListViewController.swift */,
+				73611F4A20D323E300FFAAAC /* NewPostViewController.swift */,
+				73611F4B20D323E300FFAAAC /* RecentPostsViewController.swift */,
+				73611F4C20D323E300FFAAAC /* MyPostsViewController.swift */,
+				73611F5020D323E300FFAAAC /* PostDetailTableViewController.swift */,
+				73611F5120D323E300FFAAAC /* PostDataSource.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
 		};
-		73611F3120D2FCFA00FFAAAC /* Keys */ = {
+		73611F4D20D323E300FFAAAC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				73611F2920D2F87200FFAAAC /* PublicKeysViewController.swift */,
-				73611F3520D3082E00FFAAAC /* NewPublicKeyViewController.swift */,
+				73611F4E20D323E300FFAAAC /* PostTableViewCell.swift */,
+				73611F4F20D323E300FFAAAC /* PostTableViewCell.xib */,
 			);
-			path = Keys;
+			path = Cell;
 			sourceTree = "<group>";
 		};
-		73611F3220D2FD0400FFAAAC /* Shares */ = {
+		73611F6420D3241000FFAAAC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				10B872C51CDC14C800C7D214 /* SharedKeysViewController.swift */,
-				73611F3320D2FD2000FFAAAC /* NewShareViewController.swift */,
+				73611F6520D3241000FFAAAC /* SharedKeyTableViewCell.xib */,
+				73611F6720D3242A00FFAAAC /* SharedKeyTableViewCell.swift */,
 			);
-			path = Shares;
+			path = Cell;
 			sourceTree = "<group>";
 		};
-		B3B48D96924F48D7E5EABDB8 /* Pods */ = {
+		B1CC1AAB0A285466581AF9C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A54A027EBD4DA255DA03849A /* Pods-DatabaseExample.debug.xcconfig */,
-				1C2256AF48938614DEA5F1E3 /* Pods-DatabaseExample.release.xcconfig */,
-				41B3315A8884331F7BA464A0 /* Pods-DatabaseExampleSwift.debug.xcconfig */,
-				0EF8D9F39C94803383FA4B6D /* Pods-DatabaseExampleSwift.release.xcconfig */,
-				76A37B622A1A95B17F63D7CE /* Pods-DatabaseExampleTests.debug.xcconfig */,
-				4E4C6EB7787644F20F8CA851 /* Pods-DatabaseExampleTests.release.xcconfig */,
+				AEE920E8B1D318D11BC2B666 /* Pods_SecurePostsExample.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,11 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "SecurePostsExample" */;
 			buildPhases = (
-				8D03D60548AC853B2E59EDA2 /* [CP] Check Pods Manifest.lock */,
+				DEB1DDD2A8CCB9FD4CFBDAF8 /* [CP] Check Pods Manifest.lock */,
 				5F5A53751ADE67D500F81DF0 /* Sources */,
 				5F5A53761ADE67D500F81DF0 /* Frameworks */,
 				5F5A53771ADE67D500F81DF0 /* Resources */,
-				C655D3510CDBBAF31EF8F8F9 /* [CP] Embed Pods Frameworks */,
+				379D5CCABDE1A9B9F5CFFC29 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -288,19 +285,47 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73611F6620D3241000FFAAAC /* SharedKeyTableViewCell.xib in Resources */,
 				73611F2420D2F38400FFAAAC /* Main.storyboard in Resources */,
-				73611F1E20D2F33A00FFAAAC /* PostTableViewCell.xib in Resources */,
 				73611F1F20D2F33A00FFAAAC /* Images.xcassets in Resources */,
 				73611F2120D2F33A00FFAAAC /* LaunchScreen.xib in Resources */,
+				73611F6120D323E300FFAAAC /* PostTableViewCell.xib in Resources */,
 				73611F0720D2DE0D00FFAAAC /* GoogleService-Info.plist in Resources */,
-				73611F1D20D2F33A00FFAAAC /* logo1024.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8D03D60548AC853B2E59EDA2 /* [CP] Check Pods Manifest.lock */ = {
+		379D5CCABDE1A9B9F5CFFC29 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample-frameworks.sh",
+				"${PODS_ROOT}/GRKOpenSSLFramework/OpenSSL-iOS/bin/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/themis/themis.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/themis.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEB1DDD2A8CCB9FD4CFBDAF8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -311,35 +336,11 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DatabaseExampleSwift-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SecurePostsExample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C655D3510CDBBAF31EF8F8F9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DatabaseExampleSwift/Pods-DatabaseExampleSwift-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DatabaseExampleSwift/Pods-DatabaseExampleSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -349,26 +350,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73611F3620D3082E00FFAAAC /* NewPublicKeyViewController.swift in Sources */,
-				10B872C21CDC0AC200C7D214 /* PostDataSource.swift in Sources */,
+				73611F6820D3242A00FFAAAC /* SharedKeyTableViewCell.swift in Sources */,
+				73611F6320D323E300FFAAAC /* PostDataSource.swift in Sources */,
+				73611F5C20D323E300FFAAAC /* PostListViewController.swift in Sources */,
+				73611F5220D323E300FFAAAC /* PublicKey.swift in Sources */,
+				73611F5720D323E300FFAAAC /* NewShareViewController.swift in Sources */,
+				73611F5E20D323E300FFAAAC /* RecentPostsViewController.swift in Sources */,
+				73611F5320D323E300FFAAAC /* Comment.swift in Sources */,
+				73611F5F20D323E300FFAAAC /* MyPostsViewController.swift in Sources */,
+				73611F5A20D323E300FFAAAC /* PublicKeysViewController.swift in Sources */,
+				73611F5520D323E300FFAAAC /* SharedKey.swift in Sources */,
 				10B872B11CDBFB7300C7D214 /* SignInViewController.swift in Sources */,
-				5F5A53801ADE67D500F81DF0 /* NewPostViewController.swift in Sources */,
-				73611F2A20D2F87200FFAAAC /* PublicKeysViewController.swift in Sources */,
-				73611F2C20D2FC7700FFAAAC /* Shares.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
-				10B872BB1CDC059F00C7D214 /* Comment.swift in Sources */,
-				10B872B71CDC044500C7D214 /* Post.swift in Sources */,
+				73611F6220D323E300FFAAAC /* PostDetailTableViewController.swift in Sources */,
 				73611F2820D2F48100FFAAAC /* UIViewController+Alerts.m in Sources */,
-				103685821CDD3B13004DC149 /* PostDetailTableViewController.swift in Sources */,
-				73611F3420D2FD2000FFAAAC /* NewShareViewController.swift in Sources */,
-				10B872C61CDC14C800C7D214 /* SharedKeysViewController.swift in Sources */,
-				10B872C41CDC11F200C7D214 /* RecentPostsViewController.swift in Sources */,
-				10B872BD1CDC072B00C7D214 /* PostTableViewCell.swift in Sources */,
-				10B872B41CDBFFA800C7D214 /* PostListViewController.swift in Sources */,
-				10B872AE1CDBFB1F00C7D214 /* MyPostsViewController.swift in Sources */,
+				73611F5920D323E300FFAAAC /* SharedKeysViewController.swift in Sources */,
+				73611F5B20D323E300FFAAAC /* NewPublicKeyViewController.swift in Sources */,
+				73611F5620D323E300FFAAAC /* Post.swift in Sources */,
 				1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */,
-				73611F2E20D2FCC000FFAAAC /* PublicKey.swift in Sources */,
-				10B872B91CDC056B00C7D214 /* User.swift in Sources */,
+				73611F5420D323E300FFAAAC /* User.swift in Sources */,
+				73611F5D20D323E300FFAAAC /* NewPostViewController.swift in Sources */,
+				73611F6020D323E300FFAAAC /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +495,7 @@
 		};
 		5F5A53951ADE67D500F81DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41B3315A8884331F7BA464A0 /* Pods-DatabaseExampleSwift.debug.xcconfig */;
+			baseConfigurationReference = D03378B536F777E174192EBE /* Pods-SecurePostsExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -515,7 +517,7 @@
 		};
 		5F5A53961ADE67D500F81DF0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EF8D9F39C94803383FA4B6D /* Pods-DatabaseExampleSwift.release.xcconfig */;
+			baseConfigurationReference = 1930BE5C00D48AC26C5F2395 /* Pods-SecurePostsExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
