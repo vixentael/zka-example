@@ -10,6 +10,7 @@
 		1073FE101CE2D27700E2F73F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073FE0F1CE2D27700E2F73F /* TabBarController.swift */; };
 		10B872B11CDBFB7300C7D214 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B872B01CDBFB7300C7D214 /* SignInViewController.swift */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
+		72013BC472074EAB9180EB94 /* Pods_SecurePostsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A890760ADE8AFDBC99B866FD /* Pods_SecurePostsExample.framework */; };
 		73611F0720D2DE0D00FFAAAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73611F0520D2DE0D00FFAAAC /* GoogleService-Info.plist */; };
 		73611F1F20D2F33A00FFAAAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73611F1920D2F33900FFAAAC /* Images.xcassets */; };
 		73611F2120D2F33A00FFAAAC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73611F1B20D2F33A00FFAAAC /* LaunchScreen.xib */; };
@@ -41,15 +42,15 @@
 		73611F7320D3FC7E00FFAAAC /* EncryptionEngine+Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F7220D3FC7E00FFAAAC /* EncryptionEngine+Keypair.swift */; };
 		73611F7520D3FCEE00FFAAAC /* EncryptionEngine+DecryptSK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F7420D3FCEE00FFAAAC /* EncryptionEngine+DecryptSK.swift */; };
 		73611F7720D3FE3D00FFAAAC /* EncryptionEngine+DecryptOtherPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73611F7620D3FE3D00FFAAAC /* EncryptionEngine+DecryptOtherPost.swift */; };
-		8CCE13CD665DDFA1445BB3A2 /* Pods_SecurePostsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE920E8B1D318D11BC2B666 /* Pods_SecurePostsExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1073FE0F1CE2D27700E2F73F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		10B872B01CDBFB7300C7D214 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		1930BE5C00D48AC26C5F2395 /* Pods-SecurePostsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurePostsExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample.release.xcconfig"; sourceTree = "<group>"; };
+		2D0C24B3E444CB971EF52D44 /* Pods-SecurePostsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurePostsExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample.release.xcconfig"; sourceTree = "<group>"; };
 		5F5A53791ADE67D500F81DF0 /* SecurePostsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurePostsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		60C2DE9C064E607BFAA76B16 /* Pods-SecurePostsExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurePostsExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample.debug.xcconfig"; sourceTree = "<group>"; };
 		73611F0520D2DE0D00FFAAAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		73611F1920D2F33900FFAAAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SecurePostsExample/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		73611F1A20D2F33A00FFAAAC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SecurePostsExample/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -84,8 +85,7 @@
 		73611F7220D3FC7E00FFAAAC /* EncryptionEngine+Keypair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EncryptionEngine+Keypair.swift"; sourceTree = "<group>"; };
 		73611F7420D3FCEE00FFAAAC /* EncryptionEngine+DecryptSK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EncryptionEngine+DecryptSK.swift"; sourceTree = "<group>"; };
 		73611F7620D3FE3D00FFAAAC /* EncryptionEngine+DecryptOtherPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EncryptionEngine+DecryptOtherPost.swift"; sourceTree = "<group>"; };
-		AEE920E8B1D318D11BC2B666 /* Pods_SecurePostsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecurePostsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D03378B536F777E174192EBE /* Pods-SecurePostsExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurePostsExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample.debug.xcconfig"; sourceTree = "<group>"; };
+		A890760ADE8AFDBC99B866FD /* Pods_SecurePostsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecurePostsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CCE13CD665DDFA1445BB3A2 /* Pods_SecurePostsExample.framework in Frameworks */,
+				72013BC472074EAB9180EB94 /* Pods_SecurePostsExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,11 +109,11 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		1F9543D2EE1A12DB4676B55F /* Pods */ = {
+		294D3FE0E491C36680022521 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D03378B536F777E174192EBE /* Pods-SecurePostsExample.debug.xcconfig */,
-				1930BE5C00D48AC26C5F2395 /* Pods-SecurePostsExample.release.xcconfig */,
+				60C2DE9C064E607BFAA76B16 /* Pods-SecurePostsExample.debug.xcconfig */,
+				2D0C24B3E444CB971EF52D44 /* Pods-SecurePostsExample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -123,8 +123,8 @@
 			children = (
 				5F5A537A1ADE67D500F81DF0 /* SecurePostsExample */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
-				1F9543D2EE1A12DB4676B55F /* Pods */,
-				B1CC1AAB0A285466581AF9C6 /* Frameworks */,
+				294D3FE0E491C36680022521 /* Pods */,
+				B9281B8BD6929E9D441C22DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -244,10 +244,10 @@
 			path = Encryption;
 			sourceTree = "<group>";
 		};
-		B1CC1AAB0A285466581AF9C6 /* Frameworks */ = {
+		B9281B8BD6929E9D441C22DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AEE920E8B1D318D11BC2B666 /* Pods_SecurePostsExample.framework */,
+				A890760ADE8AFDBC99B866FD /* Pods_SecurePostsExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -259,11 +259,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F5A53991ADE67D500F81DF0 /* Build configuration list for PBXNativeTarget "SecurePostsExample" */;
 			buildPhases = (
-				DEB1DDD2A8CCB9FD4CFBDAF8 /* [CP] Check Pods Manifest.lock */,
+				CFF61F997B8F96864A0B745E /* [CP] Check Pods Manifest.lock */,
 				5F5A53751ADE67D500F81DF0 /* Sources */,
 				5F5A53761ADE67D500F81DF0 /* Frameworks */,
 				5F5A53771ADE67D500F81DF0 /* Resources */,
-				379D5CCABDE1A9B9F5CFFC29 /* [CP] Embed Pods Frameworks */,
+				B439274AF51BCB32A5754437 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -326,7 +326,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		379D5CCABDE1A9B9F5CFFC29 /* [CP] Embed Pods Frameworks */ = {
+		B439274AF51BCB32A5754437 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -354,7 +354,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecurePostsExample/Pods-SecurePostsExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DEB1DDD2A8CCB9FD4CFBDAF8 /* [CP] Check Pods Manifest.lock */ = {
+		CFF61F997B8F96864A0B745E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -471,7 +471,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -520,7 +520,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -531,7 +531,7 @@
 		};
 		5F5A53951ADE67D500F81DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D03378B536F777E174192EBE /* Pods-SecurePostsExample.debug.xcconfig */;
+			baseConfigurationReference = 60C2DE9C064E607BFAA76B16 /* Pods-SecurePostsExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -539,21 +539,22 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SecurePostsExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vxtl.SecurePostsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SecurePostsExample/SecurePostsExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		5F5A53961ADE67D500F81DF0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1930BE5C00D48AC26C5F2395 /* Pods-SecurePostsExample.release.xcconfig */;
+			baseConfigurationReference = 2D0C24B3E444CB971EF52D44 /* Pods-SecurePostsExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -561,15 +562,16 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SecurePostsExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.quickstart.DatabaseExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vxtl.SecurePostsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SecurePostsExample/SecurePostsExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

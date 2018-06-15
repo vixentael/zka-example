@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  // TODO: generate your own GoogleService-Info.plist
+  // Firebase start tutorial:
+  // https://firebase.google.com/docs/ios/setup
+  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // [START initialize_firebase]
     FirebaseApp.configure()

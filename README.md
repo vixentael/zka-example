@@ -31,7 +31,18 @@ https://medium.com/@vixentael/zero-knowledge-architectures-for-mobile-applicatio
 
 This is a simple notes application, that uses Firebase as backend. Users should sign up / login on start, then they can post notes. Own notes are visible on `My Posts` page, notes from all users – on `All Posts` page.
 
-### Encrypting own notes
+This app is remake of [Firebase Database example app](https://github.com/firebase/quickstart-ios/tree/master/database).
+
+### Firebase setup
+
+Before continue:
+
+1. Change bundle name.
+2. Follow Firebase [setup tutorial](https://firebase.google.com/docs/ios/setup).
+3. Register app in the Firebase app console.
+4. Receive `GoogleService-Info.plist` and add it to the project.
+
+## Encrypting own notes
 
 Of course, notes might be rather sensitive, so users asked us to encrypt their notes, making them visible only to authors.
 We selected symmetric encryption for this purpose: use one key to encrypt and decrypt note. Each user has its own unique key.
@@ -101,12 +112,12 @@ Check `EncryptionEngine` and all its extensions. Fill empty methods in `Encrypti
 For demonstration purposes I decrypt posts only on `PostDetails` page, leaving them encrypted in the list:
 
 
-![](pics/posts-encrypted.png)
+![](pics/posts-encrypted.png) <!-- .element height="40%" -->
 
-![](pics/decrypt-own-post.png)
+![](pics/decrypt-own-post.png) <!-- .element height="40%" -->
 
 
-### Sharing encrypted posts between users
+## Sharing encrypted posts between users
 
 Suddenly our users asked about sharing feature: they want to see notes of their friends. But each note is encrypted, so we should share users' secret keys. But these keys are very sensitive, we can't sharing them plaintext. So we use asymmetric encryption to wrap SK using own private key and friend's public key. Then share wrapped key with a friend.
 
@@ -261,15 +272,15 @@ If Alice wants to read posts by Bob, Bob needs to share his SK with her.
 
 For demonstration purposes I decrypt posts only on `PostDetails` page, leaving them encrypted in the list:
 
-![](pics/public-keys.png)
+![](pics/public-keys.png) <!-- .element height="40%" -->
 
-![](pics/copy-and-save-public-key.png.png)
+![](pics/copy-and-save-public-key.png.png) <!-- .element height="40%" -->
 
-![](pics/shareSK-to-userb.png)
+![](pics/shareSK-to-userb.png) <!-- .element height="40%" -->
 
-![](pics/posts-encrypted.png)
+![](pics/posts-encrypted.png) <!-- .element height="40%" -->
 
-![](pics/decrypted-post-by-user-b.png)
+![](pics/decrypted-post-by-user-b.png) <!-- .element height="40%" -->
 
 
 You can see video of app working in [pics/ZKA-app-working](pics/ZKA-app-working.mov).
@@ -279,45 +290,48 @@ You can see video of app working in [pics/ZKA-app-working](pics/ZKA-app-working.
 
 This example has many security flaws, especially in storing secret and public keys. Please don't use it as production-ready system. It's just an illustration of ZKA approach.
 
+Of course, Firebase configuration should be changed: use private database, do not publish credentials (API keys).
+
 ## Next steps
 
 1. Keys:
 
-	1.a. Save keys (secret keys, keypair, decrypted keys) in a Keychain.
-	1.b. Store keys encrypted with masterkey derived from user password after login.
-	1.c. Build proper PKI.
-	1.d. Remove encrypted keys from list after decrypting/using.
+	* Save keys (secret keys, keypair, decrypted keys) in a Keychain.
+	* Store keys encrypted with masterkey derived from user password after login.
+	* Build proper PKI.
+	* Remove encrypted keys from list after decrypting/using.
 
 2. Login:
 
-	2.a. Hash user password during sign up process.
-	2.b. Add login via TouchID / FaceID on each app opening.
+	* Hash user password during sign up process.
+	* Add login via TouchID / FaceID on each app opening.
 
 3. Put overlay view instead of system screenshot during app switching.
 
-	3.a. Add view on `applicationDidEnterBackground`.
-	3.b. Remove view on `applicationDidBecomeActive`.
+	* Add view on `applicationDidEnterBackground`.
+	* Remove view on `applicationDidBecomeActive`.
 
 4. Networks (might be complicated to do because of Firebase library):
 
-	4.a. Add SSL pinning (get Firebase certificate, pin certificate, check on connection start) https://infinum.co/the-capsized-eight/ssl-pinning-revisited
-	4.b. Add transport encryption over SSL 
+	* Add SSL pinning (get Firebase certificate, pin certificate, check on connection start) https://infinum.co/the-capsized-eight/ssl-pinning-revisited
+	* Add transport encryption over SSL 
+	
 		- Why: https://twitter.com/vixentael/status/1003206652206739456
 		- How: https://github.com/cossacklabs/themis/wiki/Secure-Session-cryptosystem
 
 5. Code obfuscation:
 
-	5.a. https://github.com/rockbruno/swiftshield
-	5.b. https://medium.com/theappspace/increase-the-security-of-your-ios-app-by-obfuscating-sensitive-strings-swift-c915896711e6
+	* https://github.com/rockbruno/swiftshield
+	* https://medium.com/theappspace/increase-the-security-of-your-ios-app-by-obfuscating-sensitive-strings-swift-c915896711e6
 
 6. Monitor 3rd party dependencies for vulnerabilities and critical bugs:
 
-	6.a. https://www.whitesourcesoftware.com/
-	6.b. https://www.blackducksoftware.com/
-	6.c. https://snyk.io/
+	* https://www.whitesourcesoftware.com/
+	* https://www.blackducksoftware.com/
+	* https://snyk.io/
 
 ## Stay tuned
 
-More to read:
+More to read & watch:
 
 - https://github.com/vixentael/my-talks

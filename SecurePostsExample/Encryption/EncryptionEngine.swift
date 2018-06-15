@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 struct KeyPair {
   var privateKey: String
@@ -43,13 +44,27 @@ class EncryptionEngine {
   
   
   // TODO: NO state reservation at all, put to keychain :)
+  // TODO: DON'T store keys in memory, hide in keychain/storage
+  
   var publicKeys: [String: String] = [:]
   var encryptedSharedSKeys: [String: String] = [:]
   
   var myKeyPair: KeyPair?
+  var secretKey: String?
   
+  // not a very good secret key generation
   func mySecretKey() -> String {
-    return "my-super-secret-key"
+    if let sk = self.secretKey {
+      return sk
+    }
+    
+    var composedSecretKey = NSUUID().uuidString
+    if let uid = Auth.auth().currentUser?.uid {
+      composedSecretKey = "\(composedSecretKey)\(uid)"
+    }
+    
+    self.secretKey = composedSecretKey
+    return composedSecretKey
   }
 }
 
