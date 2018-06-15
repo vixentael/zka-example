@@ -49,6 +49,8 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     commentsRef = ref.child("post-comments").child(postKey)
     let nib = UINib(nibName: "PostTableViewCell", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "post")
+    
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Decrypt", style: .done, target: self, action: #selector(decryptOtherPost))
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +76,9 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
       // [START_EXCLUDE]
       self.post.setValuesForKeys(postDict)
       self.tableView.reloadData()
-      self.navigationItem.title = self.post.title
+      
+      self.navigationItem.rightBarButtonItem?.isEnabled = !self.isMyPost(postAuthor: self.post.author)
+      
       // [END_EXCLUDE]
     })
     // [END post_value_event_listener]
@@ -150,22 +154,28 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         guard let postcell = cell as? PostTableViewCell else {
           break
         }
+        
+        let postAuthor = post.author
+        
         let imageName = post.stars == nil || post.stars![uid] == nil ? "ic_star_border" : "ic_star"
-        postcell.authorLabel.text = post.author
+        postcell.authorLabel.text = postAuthor
         postcell.postTitle.text = post.title
         
-        // DECRYPT BODY:
-        var decryptedBody = post.body
+        // DECRYPT POST BODY:
+        
+        var postBody = post.body
+        
         do {
-          decryptedBody = try self.encryptionEngine.decryptOwnPost(encryptedPost: decryptedBody)
+          if (isMyPost(postAuthor:postAuthor)) {
+            postBody = try self.decryptBodyOfMyPost(encryptedBody: postBody)
+          } else {
+            postBody = try self.decryptBodyOfOtherPost(encryptedBody: postBody, author: postAuthor)
+          }
         } catch {
-          // error ¯\_(ツ)_/¯
-          // was printed to console
-          // can't decrypt? fine, use as is
-          decryptedBody = post.body
+          // decryption error, show encrypted text
         }
-  
-        postcell.postBody.text = decryptedBody
+        
+        postcell.postBody.text = postBody
         
         postcell.starButton.setImage(UIImage(named: imageName), for: .normal)
         if let starCount = post.starCount {
@@ -194,5 +204,40 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
       return 160
     }
     return 56
+  }
+}
+
+// MARK: - decryption
+extension PostDetailTableViewController {
+  
+  func isMyPost(postAuthor: String) -> Bool {
+    let username = Auth.auth().currentUser?.displayName
+    return (postAuthor == username)
+  }
+  
+  func decryptBodyOfMyPost(encryptedBody: String) throws -> String {
+    return try encryptionEngine.decryptOwnPost(encryptedPost: encryptedBody)
+  }
+  
+  func decryptBodyOfOtherPost(encryptedBody: String, author: String) throws -> String {
+    return try encryptionEngine.decryptSomebodyPost(encryptedPost: encryptedBody, author: author)
+  }
+  
+  func decryptOtherPost() {
+//    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+//    let textView = UITextView()
+//    textView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//
+//    let controller = UIViewController()
+//
+//    textView.frame = controller.view.frame
+//    controller.view.addSubview(textView)
+//
+//    alert.setValue(controller, forKey: "contentViewController")
+//
+//    let height: NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.frame.height * 0.8)
+//    alert.view.addConstraint(height)
+//
+//    present(alert, animated: true, completion: nil)
   }
 }

@@ -60,7 +60,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
       }
       cell.postTitle.text = post.title
       
-      // DECRYPT BODY:
+      // DECRYPT POST BODY:
 //      var decryptedBody = post.body
 //      do {
 //        decryptedBody = try self.encryptionEngine.decryptOwnPost(encryptedPost: decryptedBody)

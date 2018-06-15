@@ -24,6 +24,9 @@ import FirebaseUI
 class NewPostViewController: UIViewController, UITextFieldDelegate {
 
   var ref: DatabaseReference!
+  
+  var encryptionEngine = EncryptionEngine.sharedInstance
+  
   @IBOutlet weak var bodyTextView: UITextView!
   @IBOutlet weak var titleTextField: UITextField!
 
@@ -58,9 +61,18 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
       let username = value?["username"] as? String ?? ""
       let user = AppUser(username: username)
 
+      // ENCRYPT POST BODY:
+      var postBody = self.bodyTextView.text!
+      
+      do {
+        postBody = try self.encryptionEngine.encryptOwnPost(body: postBody)
+      } catch {
+        // encryption error, post as is
+      }
+      
       // [START_EXCLUDE]
       // Write new post
-      self.writeNewPost(withUserID: userID!, username: user.username, title: self.titleTextField.text!, body: self.bodyTextView.text)
+      self.writeNewPost(withUserID: userID!, username: user.username, title: self.titleTextField.text!, body: postBody)
       // Finish this Activity, back to the stream
       _ = self.navigationController?.popViewController(animated: true)
       // [END_EXCLUDE]

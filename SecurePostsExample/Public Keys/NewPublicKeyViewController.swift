@@ -46,6 +46,7 @@ class NewPublicKeyViewController: UIViewController, UITextFieldDelegate {
           bodyText = myPubKey
         }
         bodyTextView.text = bodyText
+        bodyTextView.isEditable = false
     }
     
     @IBAction func didTapPost(_ sender: AnyObject) {

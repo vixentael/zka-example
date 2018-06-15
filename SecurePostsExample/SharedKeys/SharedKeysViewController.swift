@@ -27,6 +27,7 @@ class SharedKeysViewController: UIViewController, UITableViewDelegate {
   var ref: DatabaseReference!
   // [END define_database_reference]
   
+  var encryptionEngine = EncryptionEngine.sharedInstance
   var dataSource: FUITableViewDataSource?
   
   @IBOutlet weak var tableView: UITableView!
@@ -70,12 +71,12 @@ class SharedKeysViewController: UIViewController, UITableViewDelegate {
     let author = sharedKey.author
     let recipient = sharedKey.recipient
     
-    // TODO: use this encrypted key to decrypt message by author
+    self.showMessagePrompt("Encrypted SK is saved")
     
-    let pasteBoard = UIPasteboard.general
-    pasteBoard.string = encryptedKey
-    
-    self.showMessagePrompt("Encrypted SK is copied to clipboard")
+    // remember SK shared for me
+    if (recipient == Auth.auth().currentUser?.displayName) {
+      self.encryptionEngine.rememberSharedKey(user: author, sharedKey: encryptedKey)
+    }
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -557,6 +557,8 @@
                             <outlet property="delegate" destination="JQY-YR-KkD" id="94B-KF-cKM"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDO-Nm-tyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
