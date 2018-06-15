@@ -24,7 +24,9 @@ import FirebaseUI
 class NewShareViewController: UIViewController, UITextFieldDelegate {
 
   var ref: DatabaseReference!
-  @IBOutlet weak var bodyTextView: UITextView!
+  var encryptionEngine = EncryptionEngine.sharedInstance
+  
+  @IBOutlet weak var recipientPublicKeyTextView: UITextView!
   @IBOutlet weak var recipientTextField: UITextField!
 
   override func viewDidLoad() {
@@ -41,11 +43,12 @@ class NewShareViewController: UIViewController, UITextFieldDelegate {
     doneBar.barTintColor = UIColor.purple
     doneBar.autoresizingMask = .flexibleWidth
     let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let done = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(didTapPost))
+    let done = UIBarButtonItem(title: "Share my SecretKey", style: .plain, target: self, action: #selector(didTapPost))
     done.tintColor = UIColor.yellow
     doneBar.items  = [flex, done, flex]
     doneBar.sizeToFit()
-    bodyTextView.inputAccessoryView = doneBar
+    
+    recipientPublicKeyTextView.inputAccessoryView = doneBar
     recipientTextField.inputAccessoryView = doneBar
   }
 
@@ -58,11 +61,19 @@ class NewShareViewController: UIViewController, UITextFieldDelegate {
       let username = value?["username"] as? String ?? ""
       let user = AppUser(username: username)
 
+      let recipientUserName = self.recipientTextField.text
+      
+      // ENCRYPT OWN SK FOR RECIPIENT
+      var encryptedSKToSend = "Error in encrypting SK for user \(String(describing: recipientUserName))"
+      if let encryptedSK = try? self.encryptionEngine.encryptSecretKeyForUser(userPublicKey: self.recipientPublicKeyTextView.text) {
+        encryptedSKToSend = encryptedSK
+      }
+      
       // [START_EXCLUDE]
       // Write new share
       self.writeNewShare(withUserID: userID!, author: user.username,
-                         recipient: self.recipientTextField.text,
-                         body: self.bodyTextView.text)
+                         recipient: recipientUserName,
+                         body: encryptedSKToSend)
       // Finish this Activity, back to the stream
       _ = self.navigationController?.popViewController(animated: true)
       // [END_EXCLUDE]
@@ -80,8 +91,7 @@ class NewShareViewController: UIViewController, UITextFieldDelegate {
     let share = ["uid": userID,
                 "author": author,
                 "recipient": recipient,
-                "encryptedSecret": body,
-                "timestamp": ServerValue.timestamp()] as [String : Any]
+                "encryptedSecret": body]
     let childUpdates = ["/shared-keys/\(key)": share,
                         "/user-shared-keys/\(userID)/\(key)/": share]
     ref.updateChildValues(childUpdates)

@@ -35,7 +35,7 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
   var commentsRef: DatabaseReference!
   var refHandle: DatabaseHandle?
 
-  var encryptionEngine = EncryptionEngine()
+  var encryptionEngine = EncryptionEngine.sharedInstance
   
   // UITextViewDelegate protocol method
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {

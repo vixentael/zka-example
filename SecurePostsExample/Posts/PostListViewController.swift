@@ -27,7 +27,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
   var ref: DatabaseReference!
   // [END define_database_reference]
   
-  var encryptionEngine = EncryptionEngine()
+  var encryptionEngine = EncryptionEngine.sharedInstance
 
   var dataSource: FUITableViewDataSource?
 
@@ -61,7 +61,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
       cell.postTitle.text = post.title
       
       // DECRYPT BODY:
-      var decryptedBody = post.body
+//      var decryptedBody = post.body
 //      do {
 //        decryptedBody = try self.encryptionEngine.decryptOwnPost(encryptedPost: decryptedBody)
 //      } catch {
@@ -71,7 +71,7 @@ class PostListViewController: UIViewController, UITableViewDelegate {
 //        decryptedBody = post.body
 //      }
       
-      cell.postBody.text = decryptedBody
+      cell.postBody.text = post.body
       return cell
     }
 

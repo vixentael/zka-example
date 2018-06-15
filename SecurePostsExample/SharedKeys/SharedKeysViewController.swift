@@ -75,7 +75,7 @@ class SharedKeysViewController: UIViewController, UITableViewDelegate {
     let pasteBoard = UIPasteboard.general
     pasteBoard.string = encryptedKey
     
-    self.showMessagePrompt("Encypred key is copied to clipboard")
+    self.showMessagePrompt("Encrypted SK is copied to clipboard")
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

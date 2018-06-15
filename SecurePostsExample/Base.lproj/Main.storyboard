@@ -270,7 +270,7 @@
                                                     <outlet property="delegate" destination="chk-g1-9Cj" id="NNR-H1-3T6"/>
                                                 </connections>
                                             </textView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9S-ZI-C4h">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9S-ZI-C4h">
                                                 <rect key="frame" x="12" y="4" width="414" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -312,7 +312,7 @@
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="SHg-4i-E08"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="bodyTextView" destination="L81-zx-z24" id="LZq-3G-7yf"/>
+                        <outlet property="recipientPublicKeyTextView" destination="L81-zx-z24" id="nnY-2i-HTU"/>
                         <outlet property="recipientTextField" destination="D9S-ZI-C4h" id="3nV-Q1-ENT"/>
                     </connections>
                 </viewController>
