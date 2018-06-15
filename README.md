@@ -41,6 +41,13 @@ Before continue:
 2. Follow Firebase [setup tutorial](https://firebase.google.com/docs/ios/setup).
 3. Register app in the Firebase app console.
 4. Receive `GoogleService-Info.plist` and add it to the project.
+5. In your Firebase console, app settings, enable Authentication via email.
+6. Enable relatime database in a test mode.
+
+![](pics/decrypted-post-by-user-b.png) <!-- .element height="80%" -->
+
+![](pics/fb-db-rules.png) <!-- .element height="80%" -->
+
 
 ## Encrypting own notes
 
@@ -115,6 +122,8 @@ For demonstration purposes I decrypt posts only on `PostDetails` page, leaving t
 ![](pics/posts-encrypted.png) <!-- .element height="40%" -->
 
 ![](pics/decrypt-own-post.png) <!-- .element height="40%" -->
+
+![](pics/fb-db.png) <!-- .element height="40%" -->
 
 
 ## Sharing encrypted posts between users
