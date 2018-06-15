@@ -41,6 +41,8 @@ class EncryptionEngine {
   static let sharedInstance = EncryptionEngine()
   private init() {} //This prevents others from using the default '()' initializer for this class.
   
+  
+  // TODO: NO state reservation at all, put to keychain :)
   var publicKeys: [String: String] = [:]
   var encryptedSharedSKeys: [String: String] = [:]
   
