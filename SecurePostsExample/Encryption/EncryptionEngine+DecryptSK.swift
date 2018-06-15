@@ -44,7 +44,7 @@ extension EncryptionEngine {
       throw EncryptionError.cantEncryptOwnSecretKey
     }
     
-    // 6. decode decrypted
+    // 6. encode decrypted
     guard let decryptedSKString = String(data: decryptedSecretKey, encoding: .utf8) else {
       print("Failed to decrypt somebody's SK: error occurred while decoding decrypted SK")
       throw EncryptionError.cantEncodeDecryptedPostBody

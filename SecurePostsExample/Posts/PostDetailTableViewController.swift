@@ -49,8 +49,6 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
     commentsRef = ref.child("post-comments").child(postKey)
     let nib = UINib(nibName: "PostTableViewCell", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "post")
-    
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Decrypt", style: .done, target: self, action: #selector(decryptOtherPost))
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -221,23 +219,5 @@ extension PostDetailTableViewController {
   
   func decryptBodyOfOtherPost(encryptedBody: String, author: String) throws -> String {
     return try encryptionEngine.decryptSomebodyPost(encryptedPost: encryptedBody, author: author)
-  }
-  
-  func decryptOtherPost() {
-//    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-//    let textView = UITextView()
-//    textView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//
-//    let controller = UIViewController()
-//
-//    textView.frame = controller.view.frame
-//    controller.view.addSubview(textView)
-//
-//    alert.setValue(controller, forKey: "contentViewController")
-//
-//    let height: NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.frame.height * 0.8)
-//    alert.view.addConstraint(height)
-//
-//    present(alert, animated: true, completion: nil)
   }
 }
