@@ -17,3 +17,4 @@
 //
 
 #import "UIViewController+Alerts.h"
+#import <objcthemis/objcthemis.h>

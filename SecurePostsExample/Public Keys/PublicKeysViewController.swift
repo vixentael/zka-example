@@ -20,6 +20,7 @@ class PublicKeysViewController: UIViewController, UITableViewDelegate {
   var ref: DatabaseReference!
   // [END define_database_reference]
   
+  var encryptionEngine = EncryptionEngine.sharedInstance
   var dataSource: FUITableViewDataSource?
   
   @IBOutlet weak var tableView: UITableView!
@@ -41,12 +42,12 @@ class PublicKeysViewController: UIViewController, UITableViewDelegate {
       guard let publicKey = PublicKey(snapshot: snap) else { return cell }
       cell.authorImage.image = UIImage(named: "ic_account_circle")
       cell.authorLabel.text = publicKey.author
+      cell.postBody.text = publicKey.body
       
       cell.starButton.isHidden = true
       cell.numStarsLabel.isHidden = true
       cell.postTitle.isHidden = true
       
-      cell.postBody.text = publicKey.body
       return cell
     }
     
@@ -66,12 +67,12 @@ class PublicKeysViewController: UIViewController, UITableViewDelegate {
     let publicKey = publicKeyModel.body
     let author = publicKeyModel.author
     
-    // TODO: use this public key to decrypt encrypted key by author
-    
     let pasteBoard = UIPasteboard.general
     pasteBoard.string = publicKey
     
-    self.showMessagePrompt("Public key is copied to the clipboard")
+    self.showMessagePrompt("Public key is saved, and copied to clipboard")
+    
+    self.encryptionEngine.rememberPublicKey(user: author, publicKey: publicKey)
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

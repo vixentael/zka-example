@@ -17,6 +17,8 @@ class NewPublicKeyViewController: UIViewController, UITextFieldDelegate {
     
     var ref: DatabaseReference!
     @IBOutlet weak var bodyTextView: UITextView!
+  
+    var encryptionEngine = EncryptionEngine.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,14 @@ class NewPublicKeyViewController: UIViewController, UITextFieldDelegate {
         doneBar.items  = [flex, done, flex]
         doneBar.sizeToFit()
         bodyTextView.inputAccessoryView = doneBar
+      
+        // POST MY OWN PUBLIC KEY
+        var bodyText = ""
+        if let myPubKey = try? encryptionEngine.getMyPublicKey() {
+          bodyText = myPubKey
+        }
+        bodyTextView.text = bodyText
+        bodyTextView.isEditable = false
     }
     
     @IBAction func didTapPost(_ sender: AnyObject) {
