@@ -79,8 +79,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
                 "author": username,
                 "title": title,
                 "body": body,
-                "starCount" : "0",
-                "timestamp": ServerValue.timestamp()] as [String : Any]
+                "starCount" : "0"] as [String : Any]
     let childUpdates = ["/posts/\(key)": post,
                         "/user-posts/\(userID)/\(key)/": post]
     ref.updateChildValues(childUpdates)

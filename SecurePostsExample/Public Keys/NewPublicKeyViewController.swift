@@ -67,8 +67,7 @@ class NewPublicKeyViewController: UIViewController, UITextFieldDelegate {
         let key = ref.child("public-keys").childByAutoId().key
         let publicKey = ["uid": userID,
                      "author": username,
-                     "body": body,
-                     "timestamp": ServerValue.timestamp()] as [String : Any]
+                     "body": body] as [String : Any]
         let childUpdates = ["/public-keys/\(key)": publicKey,
                             "/user-public-keys/\(userID)/\(key)/": publicKey]
         ref.updateChildValues(childUpdates)

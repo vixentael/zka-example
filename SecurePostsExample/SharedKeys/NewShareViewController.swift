@@ -80,8 +80,7 @@ class NewShareViewController: UIViewController, UITextFieldDelegate {
     let share = ["uid": userID,
                 "author": author,
                 "recipient": recipient,
-                "encryptedSecret": body,
-                "timestamp": ServerValue.timestamp()] as [String : Any]
+                "encryptedSecret": body]
     let childUpdates = ["/shared-keys/\(key)": share,
                         "/user-shared-keys/\(userID)/\(key)/": share]
     ref.updateChildValues(childUpdates)
