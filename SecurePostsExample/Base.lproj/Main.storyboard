@@ -701,7 +701,7 @@
         <scene sceneID="IbI-g6-dTx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x18-aU-F7c" userLabel="Shared Keys Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Shares" image="ic_shared_keys" id="f53-xY-Yxg"/>
+                    <tabBarItem key="tabBarItem" title="Shared Keys" image="ic_shared_keys" id="f53-xY-Yxg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PsA-9N-ziN">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>

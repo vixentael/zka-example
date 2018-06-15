@@ -135,7 +135,6 @@
 				73611F2220D2F38300FFAAAC /* Main.storyboard */,
 			);
 			name = "Supporting Files";
-			path = DatabaseExample;
 			sourceTree = "<group>";
 		};
 		5F5A537A1ADE67D500F81DF0 /* SecurePostsExample */ = {
