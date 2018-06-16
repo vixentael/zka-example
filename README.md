@@ -21,9 +21,7 @@ Zero knowledge algorithms and protocols ensure that no keys, passwords, files, o
 - Authentication (Zero Knowledge Proof Protocol enables two parties to compare a secret without exposing it, efficiently avoiding leakage of secrets during transmission)
 - Data sharing (medical data sharing)
 
-Read more:
-
-https://medium.com/@vixentael/zero-knowledge-architectures-for-mobile-applications-b00a231fda75
+Read more [in Medium post](https://medium.com/@vixentael/zero-knowledge-architectures-for-mobile-applications-b00a231fda75).
 
 ## Making Secure Notes app
 
@@ -44,9 +42,9 @@ Before continue:
 5. In your Firebase console, app settings, enable Authentication via email.
 6. Enable relatime database in a test mode.
 
-![](pics/decrypted-post-by-user-b.png) <!-- .element height="80%" -->
+<img src="pics/fb-auth.png" width=70%>
 
-![](pics/fb-db-rules.png) <!-- .element height="80%" -->
+<img src="pics/fb-db-rules.png" width=70%>
 
 
 ## Encrypting own notes
@@ -56,17 +54,17 @@ We selected symmetric encryption for this purpose: use one key to encrypt and de
 
 *Encrypting post:*
 
-	1. Generate user secret key (SK). Keep it in a secure place! Use KDF to make secret key stronger.
-	2. Encrypt post body using SK and AES.
-	3. Encode post body to base64 with percent encoding (for safe transfer via network).
-	4. Save post to the backend.
+1. Generate user secret key (SK). Keep it in a secure place! Use KDF to make secret key stronger.
+2. Encrypt post body using SK and AES.
+3. Encode post body to base64 with percent encoding (for safe transfer via network).
+4. Save post to the backend.
 
 *Decrypting post:*
 	
-	1. Retrieve user secret key (SK).
-	2. Decode post body from base64 and remove percent encoding.
-	3. Decrypt post body using SK and AES.
-	4. Show decrypted post.
+1. Retrieve user secret key (SK).
+2. Decode post body from base64 and remove percent encoding.
+3. Decrypt post body using SK and AES.
+4. Show decrypted post.
 
 #### Implementation details
 
@@ -119,12 +117,9 @@ Check `EncryptionEngine` and all its extensions. Fill empty methods in `Encrypti
 For demonstration purposes I decrypt posts only on `PostDetails` page, leaving them encrypted in the list:
 
 
-![](pics/posts-encrypted.png) <!-- .element height="40%" -->
+<img src="pics/posts-encrypted.png" width=40%> <img src="pics/decrypt-own-post.png" width=40%>
 
-![](pics/decrypt-own-post.png) <!-- .element height="40%" -->
-
-![](pics/fb-db.png) <!-- .element height="40%" -->
-
+<img src="pics/fb-db.png" width=80%>
 
 ## Sharing encrypted posts between users
 
@@ -134,36 +129,35 @@ Suddenly our users asked about sharing feature: they want to see notes of their 
 
 User Alice shares her encrypted post and encrypted secret key for user Bob:
 
-	1. Has own secret key `SK-a`.
+1. Has own secret key `SK-a`.
 
-	2. Encrypts own posts with `SK-a`:
+2. Encrypts own posts with `SK-a`:
 
-		`EncrPost-a = SecureCell(Post-a, SK-a)`
+	`EncrPost-a = SecureCell(Post-a, SK-a)`
 
-	3. Shares her public key with Bob (`Pub-a`).
+3. Shares her public key with Bob (`Pub-a`).
 
-	4. Encrypts `SK-a` for her friend Bob `SharedKey-(a->b)` using own private key (`Priv-a`) and Bob's public key (`Pub-b`):
+4. Encrypts `SK-a` for her friend Bob `SharedKey-(a->b)` using own private key (`Priv-a`) and Bob's public key (`Pub-b`):
 
-		`SharedKey-(a->b) = SecureMessage(SK-a, Priv-a, Pub-b)`
+	`SharedKey-(a->b) = SecureMessage(SK-a, Priv-a, Pub-b)`
 
 User Bob wants to read message from User Alice:
 
-	1. Shares his public key with Alice (`Pubk-b`).
+1. Shares his public key with Alice (`Pubk-b`).
 
-	2. Decrypts Alice secret key using own private key (`Priv-b`) and her public key (`Pub-a`):
+2. Decrypts Alice secret key using own private key (`Priv-b`) and her public key (`Pub-a`):
 
-		`SK-a = SecureMessage(SharedKey-(a->b), Priv-b, Pub-a)`
+	`SK-a = SecureMessage(SharedKey-(a->b), Priv-b, Pub-a)`
 
-	3. Decrypts Alice post using her secret key:
+3. Decrypts Alice post using her secret key:
 
-		`Post-a = SecureCell(EncrPost-a, SK-a)`
+	`Post-a = SecureCell(EncrPost-a, SK-a)`
 
 And vice versa :)
 
 Here is the scheme:
 
-![](pics/scheme-alice-bob-db.png)
-
+<img src="pics/scheme-alice-bob-db.png" width=70%>
 
 *Where to find public keys?*
 
@@ -177,12 +171,12 @@ In our example we will use [Themis Secure Message](https://github.com/cossacklab
 
 #### Encrypting own SK:
 
-	1. Generate own Keypair. Prepare own private key as Data. Prepare own secret key as Data.
-	2. Get other user public key as String, decode it from base64 and remove percent escaping.
-	3. Create SecureMessage container with own private key and other user public key.
-	4. Encrypt own secret key using Secure Message for other user.
-	5. Encode SK to String (add base64 and percent encoding).
-	6. Share to the backend
+1. Generate own Keypair. Prepare own private key as Data. Prepare own secret key as Data.
+2. Get other user public key as String, decode it from base64 and remove percent escaping.
+3. Create SecureMessage container with own private key and other user public key.
+4. Encrypt own secret key using Secure Message for other user.
+5. Encode SK to String (add base64 and percent encoding).
+6. Share to the backend
 
 
 *Generate keypair:*
@@ -223,14 +217,14 @@ In our example we will use [Themis Secure Message](https://github.com/cossacklab
 
 #### Decrypting other user post:
 
-	1. Generate own Keypair. Prepare own private key as Data.
-	2. Prepare other user encrypted SK as String
-	3. Create SecureMessage container with own private key and other user public key.
-	4. Decode encryped SK to Data (remove percent encoding, create Data object from base64-encoded string).
-	5. Decrypt other user SK using Secure Message.
-	5. Encode SK to String (user base64-encoding and percent encoding).
-	6. Decrypt other user post using his secret key.
-	7. Show decrypted post.
+1. Generate own Keypair. Prepare own private key as Data.
+2. Prepare other user encrypted SK as String
+3. Create SecureMessage container with own private key and other user public key.
+4. Decode encryped SK to Data (remove percent encoding, create Data object from base64-encoded string).
+5. Decrypt other user SK using Secure Message.
+5. Encode SK to String (user base64-encoding and percent encoding).
+6. Decrypt other user post using his secret key.
+7. Show decrypted post.
 
 *Create SecureMessage container with own private key and other user public key:*
 
@@ -281,15 +275,9 @@ If Alice wants to read posts by Bob, Bob needs to share his SK with her.
 
 For demonstration purposes I decrypt posts only on `PostDetails` page, leaving them encrypted in the list:
 
-![](pics/public-keys.png) <!-- .element height="40%" -->
+<img src="pics/public-keys.png" width=33%> <img src="pics/copy-and-save-public-key.png" width=33%> <img src="pics/shareSK-to-userb.png" width=33%> 
 
-![](pics/copy-and-save-public-key.png.png) <!-- .element height="40%" -->
-
-![](pics/shareSK-to-userb.png) <!-- .element height="40%" -->
-
-![](pics/posts-encrypted.png) <!-- .element height="40%" -->
-
-![](pics/decrypted-post-by-user-b.png) <!-- .element height="40%" -->
+<img src="pics/posts-encrypted.png" width=40%> <img src="pics/decrypted-post-by-user-b.png" width=40%>
 
 
 You can see video of app working in [pics/ZKA-app-working](pics/ZKA-app-working.mov).
