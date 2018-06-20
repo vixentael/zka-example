@@ -217,7 +217,7 @@ In our example we will use [Themis Secure Message](https://github.com/cossacklab
 
 #### Decrypting other user post:
 
-1. Generate own Keypair. Prepare own private key as Data.
+1. Retrieve own Keypair. Prepare own private key as Data.
 2. Prepare other user encrypted SK as String
 3. Create SecureMessage container with own private key and other user public key.
 4. Decode encryped SK to Data (remove percent encoding, create Data object from base64-encoded string).
@@ -291,24 +291,28 @@ Of course, Firebase configuration should be changed: use private database, do no
 
 ## Next steps
 
-1. Keys:
+1. Make encryption scheme better:
+   * Currently each user post in encrypted by same Secret Key. Generate different SK for each post (store keys as structures `(post_id, SKi)`).
+   * Share encrypted SKi per each post per user (update sharing algorithm to use `SKi`).
 
-	* Save keys (secret keys, keypair, decrypted keys) in a Keychain.
-	* Store keys encrypted with masterkey derived from user password after login.
-	* Build proper PKI.
+2. Storing keys:
+
+	* Save keys (secret keys, user keypair, decrypted other user keys) in a Keychain.
+	* Make storing better: store keys encrypted with MasterKey (that is derived from user password after login). Minimize time of storing keys in plaintext in memory.
+	* Build proper PKI (authenticate users before storing their public keys).
 	* Remove encrypted keys from list after decrypting/using.
 
-2. Login:
+3. Login:
 
 	* Hash user password during sign up process.
 	* Add login via TouchID / FaceID on each app opening.
 
-3. Put overlay view instead of system screenshot during app switching.
+4. Put overlay view instead of system screenshot during app switching.
 
 	* Add view on `applicationDidEnterBackground`.
 	* Remove view on `applicationDidBecomeActive`.
 
-4. Networks (might be complicated to do because of Firebase library):
+5. Networks (might be complicated to do because of Firebase library):
 
 	* Add SSL pinning (get Firebase certificate, pin certificate, check on connection start) https://infinum.co/the-capsized-eight/ssl-pinning-revisited
 	* Add transport encryption over SSL 
@@ -316,12 +320,12 @@ Of course, Firebase configuration should be changed: use private database, do no
 		- Why: https://twitter.com/vixentael/status/1003206652206739456
 		- How: https://github.com/cossacklabs/themis/wiki/Secure-Session-cryptosystem
 
-5. Code obfuscation:
+6. Code obfuscation:
 
 	* https://github.com/rockbruno/swiftshield
 	* https://medium.com/theappspace/increase-the-security-of-your-ios-app-by-obfuscating-sensitive-strings-swift-c915896711e6
 
-6. Monitor 3rd party dependencies for vulnerabilities and critical bugs:
+7. Monitor 3rd party dependencies for vulnerabilities and critical bugs:
 
 	* https://www.whitesourcesoftware.com/
 	* https://www.blackducksoftware.com/
@@ -329,6 +333,6 @@ Of course, Firebase configuration should be changed: use private database, do no
 
 ## Stay tuned
 
-More to read & watch:
+Wanna help with data security and encryption? Ping [@cossacklabs](https://cossacklabs.com/), this is what we do for living :)
 
-- https://github.com/vixentael/my-talks
+More my talks to read & watch in [my-talks](https://github.com/vixentael/my-talks) repo.
