@@ -38,29 +38,16 @@ extension EncryptionEngine {
   }
   
   func decryptAnyPost(encryptedPost: String, secretKey: String) throws -> String {
-    let secretKeyData = dataFromString(string: secretKey)
+    // TODO: implement decryption
     
     // 1. create decryptor with own secret key
-    guard let data = secretKeyData, let cellSeal = TSCellSeal(key: data) else {
-      print("Failed to decrypt post: error occurred while initializing object cellSeal")
-      throw EncryptionError.cantCreateSecureCell
-    }
-    
+
     // 2. encode encryptedPost from string to Data
-    guard let encryptedPostData = dataFromString(string: encryptedPost) else {
-      print("Failed to decrypt post: error occurred while decoding base64 encrypted post body")
-      throw EncryptionError.cantDecodeEncryptedPostBody
-    }
     
     // 3. decrypt encryptedPost
-    var decryptedMessage: Data = Data()
-    do {
-      decryptedMessage = try cellSeal.unwrapData(encryptedPostData,
-                                                 context: nil)
-    } catch let error as NSError {
-      print("Failed to decrypt post: error occurred while decrypting: \(error)")
-      throw EncryptionError.cantDecryptPostBody
-    }
+    
+    // this line is fake, change it to real
+    let decryptedMessage = dataFromString(string: encryptedPost)!
     
     // 4. encode decrypted post from Data to String
     guard let decryptedBody = String(data: decryptedMessage, encoding: .utf8) else {
