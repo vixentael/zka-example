@@ -29,7 +29,7 @@ extension EncryptionEngine {
                                           throw EncryptionError.cantCreateSecureMessage
     }
     
-    // 4. decode EncryptedSK
+    // 4. encode EncryptedSK from string to Data
     guard let encryptedSKData = dataFromString(string: encryptedSecretKey) else {
       print("Failed to decrypt somebody's SK: error occurred while decoding base64 encrypted SK")
       throw EncryptionError.cantDecodeEncryptedPostBody

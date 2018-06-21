@@ -15,13 +15,13 @@ extension EncryptionEngine {
   func encryptOwnPost(body: String) throws -> String {
     let mySecretKeyData = dataFromString(string: mySecretKey())
     
-    // 1. create encryptor with own secret key
+    // 1. create encryptor SecureCell with own secret key
     guard let data = mySecretKeyData, let cellSeal = TSCellSeal(key: data) else {
       print("Failed to encrypt post: error occurred while initializing object cellSeal")
       throw EncryptionError.cantCreateSecureCell
     }
     
-    // 2. encrypt
+    // 2. encrypt data
     var encryptedMessage: Data = Data()
     do {
       encryptedMessage = try cellSeal.wrap(body.data(using: .utf8)!,

@@ -46,13 +46,13 @@ extension EncryptionEngine {
       throw EncryptionError.cantCreateSecureCell
     }
     
-    // 2. decode
+    // 2. encode encryptedPost from string to Data
     guard let encryptedPostData = dataFromString(string: encryptedPost) else {
       print("Failed to decrypt post: error occurred while decoding base64 encrypted post body")
       throw EncryptionError.cantDecodeEncryptedPostBody
     }
     
-    // 3. decrypt
+    // 3. decrypt encryptedPost
     var decryptedMessage: Data = Data()
     do {
       decryptedMessage = try cellSeal.unwrapData(encryptedPostData,
@@ -62,7 +62,7 @@ extension EncryptionEngine {
       throw EncryptionError.cantDecryptPostBody
     }
     
-    // 4. decode decrypted
+    // 4. encode decrypted post from Data to String
     guard let decryptedBody = String(data: decryptedMessage, encoding: .utf8) else {
       print("Failed to decrypt post: error occurred while encoding decrypted post body")
       throw EncryptionError.cantEncodeDecryptedPostBody
