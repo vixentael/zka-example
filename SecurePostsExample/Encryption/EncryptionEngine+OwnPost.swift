@@ -13,13 +13,24 @@ import Foundation
 extension EncryptionEngine {
   
   func encryptOwnPost(body: String) throws -> String {
-    // TODO: implement encryption
-    // 1. create encryptor SecureCell with own secret key
-
-    // 2. encrypt data
+    let mySecretKeyData_ = mySecretKey().data(using: .utf8)
     
-    // this line is fake, change it to real
-    let encryptedMessage = body.data(using: .utf8)
+    // 1. create encryptor SecureCell with own secret key
+    guard let mySecretKeyData = mySecretKeyData_,
+      let cellSeal = TSCellSeal(key: mySecretKeyData) else {
+      print("Failed to encrypt post: error occurred while initializing object cellSeal")
+      throw EncryptionError.cantCreateSecureCell
+    }
+    
+    // 2. encrypt data
+    var encryptedMessage: Data = Data()
+    do {
+      encryptedMessage = try cellSeal.wrap(body.data(using: .utf8)!,
+                                           context: nil)
+    } catch let error as NSError {
+      print("Failed to encrypt post: error occurred while encrypting body \(error)")
+      throw EncryptionError.cantEncryptPostBody
+    }
 
     // 3. encode encrypted
     guard let escapedBase64URLEncodedMessage = escapedBase64StringFrom(data: encryptedMessage) else {

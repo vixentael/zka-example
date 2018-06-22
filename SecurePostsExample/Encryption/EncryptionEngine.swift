@@ -54,17 +54,20 @@ class EncryptionEngine {
   
   // not a very good secret key generation
   func mySecretKey() -> String {
-    if let sk = self.secretKey {
-      return sk
-    }
+    return "my-secret-key"
     
-    var composedSecretKey = NSUUID().uuidString
-    if let uid = Auth.auth().currentUser?.uid {
-      composedSecretKey = "\(composedSecretKey)\(uid)"
-    }
     
-    self.secretKey = composedSecretKey
-    return composedSecretKey
+//    if let sk = self.secretKey {
+//      return sk
+//    }
+//
+//    var composedSecretKey = NSUUID().uuidString
+//    if let uid = Auth.auth().currentUser?.uid {
+//      composedSecretKey = "\(composedSecretKey)\(uid)"
+//    }
+//
+//    self.secretKey = composedSecretKey
+//    return composedSecretKey
   }
 }
 
