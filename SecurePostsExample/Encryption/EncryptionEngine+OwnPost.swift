@@ -19,7 +19,7 @@ extension EncryptionEngine {
     // 2. encrypt data
     
     // this line is fake, change it to real
-    let encryptedMessage: Data = dataFromString(string: body)!
+    let encryptedMessage = body.data(using: .utf8)
 
     // 3. encode encrypted
     guard let escapedBase64URLEncodedMessage = escapedBase64StringFrom(data: encryptedMessage) else {
