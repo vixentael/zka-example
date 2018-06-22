@@ -8,22 +8,19 @@
 
 import Foundation
 
-
 // MARK: - Encrypt/Decrypt Own Posts
 extension EncryptionEngine {
   
-  func encryptOwnPost(body: String) throws -> String {
-    let mySecretKeyData_ = mySecretKey().data(using: .utf8)
+  func encryptOwnPost(body: String) throws -> EncryptedData {
     
     // 1. create encryptor SecureCell with own secret key
-    guard let mySecretKeyData = mySecretKeyData_,
-      let cellSeal = TSCellSeal(key: mySecretKeyData) else {
+    guard let cellSeal = TSCellSeal(key: mySecretKey().data) else {
       print("Failed to encrypt post: error occurred while initializing object cellSeal")
       throw EncryptionError.cantCreateSecureCell
     }
     
     // 2. encrypt data
-    var encryptedMessage: Data = Data()
+    let encryptedMessage: Data
     do {
       encryptedMessage = try cellSeal.wrap(body.data(using: .utf8)!,
                                            context: nil)
@@ -32,15 +29,10 @@ extension EncryptionEngine {
       throw EncryptionError.cantEncryptPostBody
     }
 
-    // 3. encode encrypted
-    guard let escapedBase64URLEncodedMessage = escapedBase64StringFrom(data: encryptedMessage) else {
-      print("Failed to encrypt post: Error occured while encoding encrypted message to base64")
-      throw EncryptionError.cantEncodeEncryptedPostBody
-    }
-    return escapedBase64URLEncodedMessage
+    return EncryptedData(data: encryptedMessage)
   }
   
-  func decryptOwnPost(encryptedPost: String) throws -> String {
+  func decryptOwnPost(encryptedPost: EncryptedData) throws -> String {
     return try decryptAnyPost(encryptedPost: encryptedPost, secretKey: mySecretKey())
   }
 }

@@ -11,34 +11,22 @@ import Foundation
 // MARK: - Decrypt Somebody's Secret Key
 extension EncryptionEngine {
   
-  func decryptSecretKeyFromUser(encryptedSecretKey: String, userPublicKey: String) throws -> String {
+  func decryptSecretKeyFromUser(encryptedSecretKey: EncryptedData, userPublicKey: Key) throws -> String {
     
     // 1. get my private key
-    let myPrivateKey = try getMyPrivateKeyData()
-    
-    // 2. get other user public key
-    guard let otherUserPublicKey = dataFromString(string: userPublicKey) else {
-      print("Error occurred while getting other party public key")
-      throw EncryptionError.cantDecodeOtherUserPublicKey
-    }
+    let myPrivateKey = try getMyPrivateKey()
 
     // 3. create Asym decrypter using own private key and other user' public key
-    guard let decrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey,
-                                         peerPublicKey: otherUserPublicKey) else {
+    guard let decrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey.data,
+                                         peerPublicKey: userPublicKey.data) else {
                                           print("Error occurred while creating TSMessage Decryptor")
                                           throw EncryptionError.cantCreateSecureMessage
     }
-    
-    // 4. encode EncryptedSK from string to Data
-    guard let encryptedSKData = dataFromString(string: encryptedSecretKey) else {
-      print("Failed to decrypt somebody's SK: error occurred while decoding base64 encrypted SK")
-      throw EncryptionError.cantDecodeEncryptedPostBody
-    }
 
     // 5. decrypt own secret key for another user
-    var decryptedSecretKey: Data = Data()
+    let decryptedSecretKey: Data
     do {
-      decryptedSecretKey = try decrypter.unwrapData(encryptedSKData)
+      decryptedSecretKey = try decrypter.unwrapData(encryptedSecretKey.data)
     } catch let error as NSError {
       print("Failed to decrypt somebody's SK: error occurred while decrypting: \(error)")
       throw EncryptionError.cantEncryptOwnSecretKey

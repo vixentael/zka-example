@@ -9,8 +9,8 @@
 import Foundation
 
 struct DecryptionOtherPostKeyPair {
-  var encryptedSharedKey: String
-  var publicKey: String
+  var encryptedSharedKey: EncryptedData
+  var publicKey: Key
 }
 
 
@@ -24,39 +24,34 @@ extension EncryptionEngine {
     return nil
   }
   
-  func decryptSomebodyPost(encryptedPost: String, author: String) throws -> String {
+  func decryptSomebodyPost(encryptedPost: EncryptedData, author: String) throws -> String {
     // 1. make sure we can decrypt user's SK
     guard let kp = hasKeysToDecryptSomebodyPost(user: author) else {
       throw EncryptionError.cantDecryptOtherPostNoKeys
     }
     
     // 2. decrypt SK
-    let userSecretKey = try decryptSecretKeyFromUser(encryptedSecretKey: kp.encryptedSharedKey, userPublicKey: kp.publicKey)
+    let userSecretKey = Key(string:
+        try decryptSecretKeyFromUser(
+            encryptedSecretKey: kp.encryptedSharedKey,
+            userPublicKey: kp.publicKey)
+        )!
     
     // 3. decrypt post
     return try decryptAnyPost(encryptedPost:encryptedPost, secretKey:userSecretKey)
   }
   
-  func decryptAnyPost(encryptedPost: String, secretKey: String) throws -> String {
-    let secretKeyData_ = secretKey.data(using: .utf8)
-    
+  func decryptAnyPost(encryptedPost: EncryptedData, secretKey: Key) throws -> String {
     // 1. create decryptor with own secret key
-    guard let secretKeyData = secretKeyData_,
-      let cellSeal = TSCellSeal(key: secretKeyData) else {
-      print("Failed to decrypt post: error occurred while initializing object cellSeal")
-      throw EncryptionError.cantCreateSecureCell
-    }
-    
-    // 2. encode encryptedPost from string to Data
-    guard let encryptedPostData = dataFromString(string: encryptedPost) else {
-      print("Failed to decrypt post: error occurred while decoding base64 encrypted post body")
-      throw EncryptionError.cantDecodeEncryptedPostBody
+    guard let cellSeal = TSCellSeal(key: secretKey.data) else {
+        print("Failed to decrypt post: error occurred while initializing object cellSeal")
+        throw EncryptionError.cantCreateSecureCell
     }
 
     // 3. decrypt encryptedPost
     var decryptedMessage: Data = Data()
     do {
-      decryptedMessage = try cellSeal.unwrapData(encryptedPostData,
+      decryptedMessage = try cellSeal.unwrapData(encryptedPost.data,
                                                  context: nil)
     } catch let error as NSError {
       print("Failed to decrypt post: error occurred while decrypting: \(error)")

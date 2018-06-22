@@ -72,7 +72,7 @@ class PublicKeysViewController: UIViewController, UITableViewDelegate {
     
     self.showMessagePrompt("Public key is saved, and copied to clipboard")
     
-    self.encryptionEngine.rememberPublicKey(user: author, publicKey: publicKey)
+    self.encryptionEngine.rememberPublicKey(user: author, publicKey: Key(string: publicKey)!)
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

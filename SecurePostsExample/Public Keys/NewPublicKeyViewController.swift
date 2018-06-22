@@ -43,8 +43,9 @@ class NewPublicKeyViewController: UIViewController, UITextFieldDelegate {
         // POST MY OWN PUBLIC KEY
         var bodyText = ""
         if let myPubKey = try? encryptionEngine.getMyPublicKey() {
-          bodyText = myPubKey
+          bodyText = myPubKey.base64String
         }
+        
         bodyTextView.text = bodyText
         bodyTextView.isEditable = false
     }

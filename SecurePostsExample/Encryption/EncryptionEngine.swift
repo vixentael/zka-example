@@ -6,12 +6,39 @@
 //  Copyright © 2018 Google Inc. All rights reserved.
 //
 
+struct Key {
+    let data: Data
+    
+    init(data: Data) {
+        self.data = data
+    }
+    
+    init?(string: String) {
+        guard let data = string.data(using: .utf8) else { return nil }
+        self.data = data
+    }
+    
+    init?(base64String string: String) {
+        guard let stringWithoutPercent = string.removingPercentEncoding else { return nil }
+        
+        guard let data = Data(base64Encoded: stringWithoutPercent,
+                              options: .ignoreUnknownCharacters) else { return nil }
+        
+        self.data = data
+    }
+    
+    var base64String: String {
+        return data.base64EncodedString()
+    }
+}
+
+
 import Foundation
 import FirebaseAuth
 
 struct KeyPair {
-  var privateKey: String
-  var publicKey: String
+  var privateKey: Key
+  var publicKey: Key
 }
 
 enum EncryptionError: Error {
@@ -46,43 +73,13 @@ class EncryptionEngine {
   // TODO: NO state reservation at all, put to keychain :)
   // TODO: DON'T store keys in memory, hide in keychain/storage
   
-  var publicKeys: [String: String] = [:]
-  var encryptedSharedSKeys: [String: String] = [:]
+  var publicKeys: [String: Key] = [:]
+  var encryptedSharedSKeys: [String: EncryptedData] = [:]
   
   var myKeyPair: KeyPair?
-  var secretKey: String?
   
   // not a very good secret key generation
-  func mySecretKey() -> String {
-    return "my-secret-key"
-    
-    
-//    if let sk = self.secretKey {
-//      return sk
-//    }
-//
-//    var composedSecretKey = NSUUID().uuidString
-//    if let uid = Auth.auth().currentUser?.uid {
-//      composedSecretKey = "\(composedSecretKey)\(uid)"
-//    }
-//
-//    self.secretKey = composedSecretKey
-//    return composedSecretKey
-  }
-}
-
-// MARK: - Utils
-extension EncryptionEngine {
-  
-  func dataFromString(string: String?) -> Data? {
-    guard let string = string, let stringWithoutPercent = string.removingPercentEncoding else { return nil }
-    return Data(base64Encoded: stringWithoutPercent, options: .ignoreUnknownCharacters)
-  }
-  
-  func escapedBase64StringFrom(data: Data?) -> String? {
-    guard let data = data else { return nil }
-    return data
-      .base64EncodedString(options: .endLineWithLineFeed)
-      .addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)
+  func mySecretKey() -> Key {
+    return Key(string: "my-secret-key")!
   }
 }

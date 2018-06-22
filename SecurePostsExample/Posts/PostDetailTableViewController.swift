@@ -165,9 +165,9 @@ class PostDetailTableViewController: UITableViewController, UITextFieldDelegate 
         
         do {
           if (isMyPost(postAuthor:postAuthor)) {
-            postBody = try self.decryptBodyOfMyPost(encryptedBody: postBody)
+            postBody = try self.decryptBodyOfMyPost(encryptedBody: EncryptedData(base64: postBody)!)
           } else {
-            postBody = try self.decryptBodyOfOtherPost(encryptedBody: postBody, author: postAuthor)
+            postBody = try self.decryptBodyOfOtherPost(encryptedBody: EncryptedData(base64: postBody)!, author: postAuthor)
           }
         } catch {
           // decryption error, show encrypted text
@@ -213,11 +213,11 @@ extension PostDetailTableViewController {
     return (postAuthor == username)
   }
   
-  func decryptBodyOfMyPost(encryptedBody: String) throws -> String {
+  func decryptBodyOfMyPost(encryptedBody: EncryptedData) throws -> String {
     return try encryptionEngine.decryptOwnPost(encryptedPost: encryptedBody)
   }
   
-  func decryptBodyOfOtherPost(encryptedBody: String, author: String) throws -> String {
+  func decryptBodyOfOtherPost(encryptedBody: EncryptedData, author: String) throws -> String {
     return try encryptionEngine.decryptSomebodyPost(encryptedPost: encryptedBody, author: author)
   }
 }
