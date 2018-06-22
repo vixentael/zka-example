@@ -50,21 +50,10 @@ class EncryptionEngine {
   var encryptedSharedSKeys: [String: String] = [:]
   
   var myKeyPair: KeyPair?
-  var secretKey: String?
   
   // not a very good secret key generation
   func mySecretKey() -> String {
-    if let sk = self.secretKey {
-      return sk
-    }
-    
-    var composedSecretKey = NSUUID().uuidString
-    if let uid = Auth.auth().currentUser?.uid {
-      composedSecretKey = "\(composedSecretKey)\(uid)"
-    }
-    
-    self.secretKey = composedSecretKey
-    return composedSecretKey
+    return "secret-\(Auth.auth().currentUser!.uid)"
   }
 }
 
