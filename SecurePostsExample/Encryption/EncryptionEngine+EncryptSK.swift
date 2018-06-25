@@ -11,38 +11,25 @@ import Foundation
 // MARK: - Encrypt My Secret Key
 extension EncryptionEngine {
   
-  func encryptSecretKeyForUser(userPublicKey: String) throws -> String {
+  func encryptSecretKeyForUser(userPublicKey: Key) throws -> EncryptedData {
     // 1. get my private key
-    let myPrivateKeyData = try getMyPrivateKeyData()
+    let myPrivateKey = try getMyPrivateKey()
     
-    // 2. get other user public key
-    guard let otherUserPublicKeyData = dataFromString(string: userPublicKey) else {
-      print("Error occurred while getting other party public key")
-      throw EncryptionError.cantDecodeOtherUserPublicKey
-    }
-    
-    // 3. create Asym encryptor using own private key and other user' public key
-    guard let encrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKeyData,
-                                         peerPublicKey: otherUserPublicKeyData) else {
+    // 2. create Asym encryptor using own private key and other user' public key
+    guard let encrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey.data,
+                                         peerPublicKey: userPublicKey.data) else {
                                           print("Error occurred while creating TSMessage Encryptor")
                                           throw EncryptionError.cantCreateSecureMessage
     }
     
-    // 4. encrypt own secret key for another user
-    var encryptedSecretKeyData: Data = Data()
+    
+    // 3. encrypt own secret key for another user
     do {
-      encryptedSecretKeyData = try encrypter.wrap(mySecretKey().data(using: .utf8))
+        return EncryptedData(data: try encrypter.wrap(mySecretKey().data))
     } catch let error as NSError {
       print("Failed to encrypt own SK: error occurred while encrypting: \(error)")
       throw EncryptionError.cantEncryptOwnSecretKey
     }
-    
-    // 5. encode encrypted
-    guard let escapedBase64URLEncodedSK = escapedBase64StringFrom(data: encryptedSecretKeyData) else {
-      print("Failed to encrypt SK: Error occured while encoding encrypted SK to base64")
-      throw EncryptionError.cantEncodeEncryptedPostBody
-    }
-    return escapedBase64URLEncodedSK
   }
 }
 
