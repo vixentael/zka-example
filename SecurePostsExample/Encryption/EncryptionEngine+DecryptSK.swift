@@ -11,27 +11,22 @@ import Foundation
 // MARK: - Decrypt Somebody's Secret Key
 extension EncryptionEngine {
   
-  func decryptSecretKeyFromUser(encryptedSecretKey: String, userPublicKey: String) throws -> String {
+  func decryptSecretKeyFromUser(encryptedSecretKey: EncryptedData, userPublicKey: Key) throws -> String {
+    // TODO: implement decryption
+    
+    return encryptedSecretKey.base64String
     
     // 1. get my private key
     
-    // 2. get other user public key
 
-    // 3. create Asym decrypter using own private key and other user' public key
+    // 2. create Asym decrypter using own private key and other user' public key
 
-    // 4. encode EncryptedSK from string to Data
+
+    // 3. decrypt own secret key for another user
+
     
-    // 5. decrypt own secret key for another user
-    
-    // this line is fake, change it to real
-    let decryptedSecretKey = dataFromString(string: encryptedSecretKey)!
+    // 4. encode decrypted
 
-    // 6. encode decrypted
-    guard let decryptedSKString = String(data: decryptedSecretKey, encoding: .utf8) else {
-      print("Failed to decrypt somebody's SK: error occurred while decoding decrypted SK")
-      throw EncryptionError.cantEncodeDecryptedPostBody
-    }
-    return decryptedSKString
   }
 }
 

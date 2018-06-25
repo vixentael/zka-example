@@ -8,28 +8,23 @@
 
 import Foundation
 
-
 // MARK: - Encrypt/Decrypt Own Posts
 extension EncryptionEngine {
   
-  func encryptOwnPost(body: String) throws -> String {
-    // TODO: implement encryption
-    // 1. create encryptor SecureCell with own secret key
-
-    // 2. encrypt data
-    
-    // this line is fake, change it to real
-    let encryptedMessage = body.data(using: .utf8)
-
-    // 3. encode encrypted
-    guard let escapedBase64URLEncodedMessage = escapedBase64StringFrom(data: encryptedMessage) else {
-      print("Failed to encrypt post: Error occured while encoding encrypted message to base64")
-      throw EncryptionError.cantEncodeEncryptedPostBody
-    }
-    return escapedBase64URLEncodedMessage
+  func encryptOwnPost(postBody: String) throws -> EncryptedData {
+    return try encryptAnyPost(postBody: postBody, secretKey: mySecretKey())
   }
   
-  func decryptOwnPost(encryptedPost: String) throws -> String {
+  func encryptAnyPost(postBody: String, secretKey: Key) throws -> EncryptedData {
+    // TODO: implement encryption
+    return EncryptedData(data: postBody.data(using: .utf8)!)
+    
+    // 1. create encryptor SecureCell with own secret key
+    
+    // 2. encrypt data
+  }
+  
+  func decryptOwnPost(encryptedPost: EncryptedData) throws -> String {
     return try decryptAnyPost(encryptedPost: encryptedPost, secretKey: mySecretKey())
   }
 }

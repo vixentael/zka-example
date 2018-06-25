@@ -8,6 +8,29 @@
 
 import Foundation
 
+struct EncryptedData {
+    let data: Data
+    
+    init(data: Data) {
+        self.data = data
+    }
+    
+    init?(base64String string: String) {
+        guard let stringWithoutPercent = string.removingPercentEncoding else { return nil }
+        
+        guard let data = Data(base64Encoded: stringWithoutPercent,
+                              options: .ignoreUnknownCharacters) else { return nil }
+        
+        self.data = data
+    }
+    
+    var base64String: String {
+      return data
+        .base64EncodedString(options: .endLineWithLineFeed)
+        .addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)!
+    }
+}
+
 
 // MARK: - KeyPair
 extension EncryptionEngine {
@@ -18,17 +41,13 @@ extension EncryptionEngine {
       throw EncryptionError.cantCreateKeyGenerator
     }
     
-    guard let privKey = escapedBase64StringFrom(data: keyGeneratorEC.privateKey as Data),
-      let pubKey = escapedBase64StringFrom(data: keyGeneratorEC.publicKey as Data) else {
-        print("Error occurred while escaping own keypair")
-        throw EncryptionError.cantEncodeKeyPair
-    }
+    let privKey = Key(data: keyGeneratorEC.privateKey as Data)
+    let pubKey = Key(data: keyGeneratorEC.publicKey as Data)
     
     return KeyPair(privateKey: privKey, publicKey: pubKey)
   }
   
-  func getMyPublicKey() throws -> String {
-    // 1. get my private key
+  func getMyPublicKey() throws -> Key {
     if self.myKeyPair == nil {
       self.myKeyPair = try generateMyKeyPair()
     }
@@ -41,8 +60,7 @@ extension EncryptionEngine {
     return keypair.publicKey
   }
   
-  func getMyPrivateKey() throws -> String {
-    // 1. get my private key
+  func getMyPrivateKey() throws -> Key {
     if self.myKeyPair == nil {
       self.myKeyPair = try generateMyKeyPair()
     }
@@ -53,12 +71,4 @@ extension EncryptionEngine {
     }
     return keypair.privateKey
   }
-  
-  func getMyPrivateKeyData() throws -> Data {
-    guard let myPrivateKeyData = try dataFromString(string: getMyPrivateKey()) else {
-      print("Error occurred while getting own private key data")
-      throw EncryptionError.cantDecodePrivateKey
-    }
-    return myPrivateKeyData
-    }
 }

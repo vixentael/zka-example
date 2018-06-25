@@ -9,8 +9,8 @@
 import Foundation
 
 struct DecryptionOtherPostKeyPair {
-  var encryptedSharedKey: String
-  var publicKey: String
+  var encryptedSharedKey: EncryptedData
+  var publicKey: Key
 }
 
 
@@ -24,37 +24,32 @@ extension EncryptionEngine {
     return nil
   }
   
-  func decryptSomebodyPost(encryptedPost: String, author: String) throws -> String {
+  func decryptSomebodyPost(encryptedPost: EncryptedData, author: String) throws -> String {
     // 1. make sure we can decrypt user's SK
     guard let kp = hasKeysToDecryptSomebodyPost(user: author) else {
       throw EncryptionError.cantDecryptOtherPostNoKeys
     }
     
     // 2. decrypt SK
-    let userSecretKey = try decryptSecretKeyFromUser(encryptedSecretKey: kp.encryptedSharedKey, userPublicKey: kp.publicKey)
+    let userSecretKey = Key(string:
+        try decryptSecretKeyFromUser(
+            encryptedSecretKey: kp.encryptedSharedKey,
+            userPublicKey: kp.publicKey)
+        )!
     
     // 3. decrypt post
     return try decryptAnyPost(encryptedPost:encryptedPost, secretKey:userSecretKey)
   }
   
-  func decryptAnyPost(encryptedPost: String, secretKey: String) throws -> String {
+  func decryptAnyPost(encryptedPost: EncryptedData, secretKey: Key) throws -> String {
     // TODO: implement decryption
-    
+    return encryptedPost.base64String
+
     // 1. create decryptor with own secret key
 
-    // 2. encode encryptedPost from string to Data
+    // 2. decrypt encryptedPost
     
-    // 3. decrypt encryptedPost
-    
-    // this line is fake, change it to real
-    let decryptedMessage = dataFromString(string: encryptedPost)!
-    
-    // 4. encode decrypted post from Data to String
-    guard let decryptedBody = String(data: decryptedMessage, encoding: .utf8) else {
-      print("Failed to decrypt post: error occurred while encoding decrypted post body")
-      throw EncryptionError.cantEncodeDecryptedPostBody
-    }
-    return decryptedBody
+    // 3. encode decrypted post from Data to String
   }
   
 }
