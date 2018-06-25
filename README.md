@@ -73,8 +73,8 @@ In our example we will use [Themis Secure Cell in Seal mode](https://github.com/
 *Create SecureCell:*
 
 ```swift
-    // 1. create encryptor with own secret key
-    guard let cellSeal = TSCellSeal(key: mySecretKeyData) else {
+    // 1. create encryptor SecureCell with own secret key
+    guard let cellSeal = TSCellSeal(key: secretKey.data) else {
       print("Failed to encrypt post: error occurred while initializing object cellSeal")
       throw EncryptionError.cantCreateSecureCell
     }
@@ -83,22 +83,25 @@ In our example we will use [Themis Secure Cell in Seal mode](https://github.com/
 *Encrypting post body:*
 
 ```swift
-    var encryptedMessage: Data = Data()
+    // 2. encrypt data
+    let encryptedMessage: Data
     do {
-      encryptedMessage = try cellSeal.wrap(postBodyString.data(using: .utf8)!,
+      encryptedMessage = try cellSeal.wrap(postBody.data(using: .utf8)!,
                                            context: nil)
     } catch let error as NSError {
       print("Failed to encrypt post: error occurred while encrypting body \(error)")
       throw EncryptionError.cantEncryptPostBody
     }
+    return EncryptedData(data: encryptedMessage)
 ```
 
 *Decrypting encrypted post body:*
 
 ```swift
+    // 2. decrypt encryptedPost
     var decryptedMessage: Data = Data()
     do {
-      decryptedMessage = try cellSeal.unwrapData(encryptedPostData,
+      decryptedMessage = try cellSeal.unwrapData(encryptedPost.data,
                                                  context: nil)
     } catch let error as NSError {
       print("Failed to decrypt post: error occurred while decrypting: \(error)")
@@ -110,7 +113,8 @@ See example in [Themis repo](https://github.com/cossacklabs/themis/blob/master/d
 
 #### App code
 
-Check `EncryptionEngine` and all its extensions. Fill empty methods in `EncryptionEngine+OwnPost`, `EncryptionEngine+DecryptOtherPost`.
+Check `EncryptionEngine` and all its extensions. 
+Fill empty methods in `EncryptionEngine+OwnPost`, `EncryptionEngine+DecryptOtherPost` (in `without-encryption` branch).
 
 #### Screenshots
 
@@ -182,21 +186,25 @@ In our example we will use [Themis Secure Message](https://github.com/cossacklab
 *Generate keypair:*
 
 ```swift
-    // Generating EC keys
+  func generateMyKeyPair() throws -> KeyPair {
     guard let keyGeneratorEC: TSKeyGen = TSKeyGen(algorithm: .EC) else {
-        print("Error occurred while initializing object keyGeneratorEC", #function)
-        return
+      print("Error occurred while initializing object keyGeneratorEC")
+      throw EncryptionError.cantCreateKeyGenerator
     }
-    let privateKeyEC: Data = keyGeneratorEC.privateKey as Data
-    let publicKeyEC: Data = keyGeneratorEC.publicKey as Data
+    
+    let privKey = Key(data: keyGeneratorEC.privateKey as Data)
+    let pubKey = Key(data: keyGeneratorEC.publicKey as Data)
+    
+    return KeyPair(privateKey: privKey, publicKey: pubKey)
+  }
 ```
 
 *Create SecureMessage container with own private key and other user public key:*
 
 ```swift
-    // 3. create Asym encryptor using own private key and other user' public key
-    guard let encrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey,
-                                         peerPublicKey: otherUserPublicKey) else {
+    // 2. create Asym encryptor using own private key and other user' public key
+    guard let encrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey.data,
+                                         peerPublicKey: userPublicKey.data) else {
                                           print("Error occurred while creating TSMessage Encryptor")
                                           throw EncryptionError.cantCreateSecureMessage
     }
@@ -205,10 +213,9 @@ In our example we will use [Themis Secure Message](https://github.com/cossacklab
 *Encrypt own secret key for other user:*
 
 ```swift
-    // 4. encrypt own secret key for another user
-    var encryptedSecretKey: Data = Data()
+    // 3. encrypt own secret key for another user
     do {
-      encryptedSecretKey = try encrypter.wrap(mySecretKey.data(using: .utf8))
+        return EncryptedData(data: try encrypter.wrap(mySecretKey().data))
     } catch let error as NSError {
       print("Failed to encrypt own SK: error occurred while encrypting: \(error)")
       throw EncryptionError.cantEncryptOwnSecretKey
@@ -229,21 +236,22 @@ In our example we will use [Themis Secure Message](https://github.com/cossacklab
 *Create SecureMessage container with own private key and other user public key:*
 
 ```swift
-    // 3. create Asym decrypter using own private key and other user' public key
-    guard let decrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey,
-                                         peerPublicKey: otherUserPublicKey) else {
-                                          print("Error occurred while creating TSMessage Decryptor")
-                                          throw EncryptionError.cantCreateSecureMessage
+    // 2. create Asym decrypter using own private key and other user' public key
+    guard let decrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey.data,
+                                         peerPublicKey: userPublicKey.data)
+      else {
+        print("Error occurred while creating TSMessage Decryptor")
+        throw EncryptionError.cantCreateSecureMessage
     }
 ```
 
 *Decrypting other user SK:*
 
 ```swift
-    // 5. decrypt own secret key for another user
-    var decryptedSecretKey: Data = Data()
+    // 3. decrypt own secret key for another user
+    var decryptedSecretKeyData: Data = Data()
     do {
-      decryptedSecretKey = try decrypter.unwrapData(encryptedSKData)
+      decryptedSecretKeyData = try decrypter.unwrapData(encryptedSecretKey.data)
     } catch let error as NSError {
       print("Failed to decrypt somebody's SK: error occurred while decrypting: \(error)")
       throw EncryptionError.cantEncryptOwnSecretKey
@@ -336,3 +344,7 @@ Of course, Firebase configuration should be changed: use private database, do no
 Wanna help with data security and encryption? Ping [@cossacklabs](https://cossacklabs.com/), this is what we do for living :)
 
 More my talks to read & watch in [my-talks](https://github.com/vixentael/my-talks) repo.
+
+## Thanks
+
+Thanks @AlexeyDemedetskiy for useful suggestions and PR :)
