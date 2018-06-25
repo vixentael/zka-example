@@ -14,17 +14,17 @@ extension EncryptionEngine {
   func decryptSecretKeyFromUser(encryptedSecretKey: String, userPublicKey: String) throws -> String {
     
     // 1. get my private key
-    let myPrivateKey = try getMyPrivateKeyData()
+    let myPrivateKeyData = try getMyPrivateKeyData()
     
     // 2. get other user public key
-    guard let otherUserPublicKey = dataFromString(string: userPublicKey) else {
+    guard let userPublicKeyData = dataFromString(string: userPublicKey) else {
       print("Error occurred while getting other party public key")
       throw EncryptionError.cantDecodeOtherUserPublicKey
     }
     
     // 3. create Asym decrypter using own private key and other user' public key
-    guard let decrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey,
-                                         peerPublicKey: otherUserPublicKey) else {
+    guard let decrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKeyData,
+                                         peerPublicKey: userPublicKeyData) else {
                                           print("Error occurred while creating TSMessage Decryptor")
                                           throw EncryptionError.cantCreateSecureMessage
     }
@@ -36,16 +36,16 @@ extension EncryptionEngine {
     }
     
     // 5. decrypt own secret key for another user
-    var decryptedSecretKey: Data = Data()
+    var decryptedSecretKeyData: Data = Data()
     do {
-      decryptedSecretKey = try decrypter.unwrapData(encryptedSKData)
+      decryptedSecretKeyData = try decrypter.unwrapData(encryptedSKData)
     } catch let error as NSError {
       print("Failed to decrypt somebody's SK: error occurred while decrypting: \(error)")
       throw EncryptionError.cantEncryptOwnSecretKey
     }
     
     // 6. encode decrypted
-    guard let decryptedSKString = String(data: decryptedSecretKey, encoding: .utf8) else {
+    guard let decryptedSKString = String(data: decryptedSecretKeyData, encoding: .utf8) else {
       print("Failed to decrypt somebody's SK: error occurred while decoding decrypted SK")
       throw EncryptionError.cantEncodeDecryptedPostBody
     }

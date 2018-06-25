@@ -38,10 +38,9 @@ extension EncryptionEngine {
   }
   
   func decryptAnyPost(encryptedPost: String, secretKey: String) throws -> String {
-    let secretKeyData = dataFromString(string: secretKey)
-    
     // 1. create decryptor with own secret key
-    guard let data = secretKeyData, let cellSeal = TSCellSeal(key: data) else {
+    guard let secretKeyData = secretKey.data(using: .utf8),
+      let cellSeal = TSCellSeal(key: secretKeyData) else {
       print("Failed to decrypt post: error occurred while initializing object cellSeal")
       throw EncryptionError.cantCreateSecureCell
     }

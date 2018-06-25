@@ -65,7 +65,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate {
       var postBody = self.bodyTextView.text!
       
       do {
-        postBody = try self.encryptionEngine.encryptOwnPost(body: postBody)
+        postBody = try self.encryptionEngine.encryptOwnPost(postBody: postBody)
       } catch {
         // encryption error, post as is
       }
