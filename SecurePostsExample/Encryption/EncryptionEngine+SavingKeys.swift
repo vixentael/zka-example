@@ -11,12 +11,12 @@ import Foundation
 // MARK: - SavingKeys
 extension EncryptionEngine {
   
-  func rememberPublicKey(user: String, publicKey: String) {
+  func rememberPublicKey(user: String, publicKey: Key) {
     self.publicKeys[user] = publicKey
   }
   
   func rememberSharedKey(user: String, sharedKey: String) {
-    self.encryptedSharedSKeys[user] = sharedKey
+    self.encryptedSharedSKeys[user] = EncryptedData(base64String: sharedKey)
   }
   
 }
