@@ -19,10 +19,9 @@
 #import "Private/FIRAnalyticsConfiguration+Internal.h"
 #import "Private/FIRAppInternal.h"
 #import "Private/FIRBundleUtil.h"
-#import "Private/FIRComponentContainerInternal.h"
-#import "Private/FIRCoreConfigurable.h"
 #import "Private/FIRLogger.h"
 #import "Private/FIROptionsInternal.h"
+#import "third_party/FIRAppEnvironmentUtil.h"
 
 NSString *const kFIRServiceAdMob = @"AdMob";
 NSString *const kFIRServiceAuth = @"Auth";
@@ -52,7 +51,7 @@ NSString *const kFIRGoogleAppIDKey = @"FIRGoogleAppIDKey";
 NSString *const kFIRGlobalAppDataCollectionEnabledDefaultsKeyFormat =
     @"/google/firebase/global_data_collection_enabled:%@";
 NSString *const kFIRGlobalAppDataCollectionEnabledPlistKey =
-    @"FirebaseDataCollectionDefaultEnabled";
+    @"FirebaseAutomaticDataCollectionEnabled";
 
 NSString *const kFIRAppDiagnosticsNotification = @"FIRAppDiagnosticsNotification";
 
@@ -76,12 +75,6 @@ NSString *const FIRAuthStateDidChangeInternalNotificationUIDKey =
  * The URL to download plist files.
  */
 static NSString *const kPlistURL = @"https://console.firebase.google.com/";
-
-/**
- * An array of all classes that registered as `FIRCoreConfigurable` in order to receive lifecycle
- * events from Core.
- */
-static NSMutableArray<Class<FIRCoreConfigurable>> *gRegisteredAsConfigurable;
 
 @interface FIRApp ()
 
@@ -166,7 +159,7 @@ static NSMutableDictionary *sLibraryVersions;
   if ([name isEqualToString:kFIRDefaultAppName]) {
     [NSException raise:kFirebaseCoreErrorDomain format:@"Name cannot be __FIRAPP_DEFAULT."];
   }
-  for (NSUInteger charIndex = 0; charIndex < name.length; charIndex++) {
+  for (NSInteger charIndex = 0; charIndex < name.length; charIndex++) {
     char character = [name characterAtIndex:charIndex];
     if (!((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z') ||
           (character >= '0' && character <= '9') || character == '_' || character == '-')) {
@@ -240,10 +233,6 @@ static NSMutableDictionary *sLibraryVersions;
   @synchronized([self class]) {
     if (sAllApps && sAllApps[self.name]) {
       FIRLogDebug(kFIRLoggerCore, @"I-COR000006", @"Deleting app named %@", self.name);
-
-      // Remove all cached instances from the container before deleting the app.
-      [self.container removeAllCachedInstances];
-
       [sAllApps removeObjectForKey:self.name];
       [self clearDataCollectionSwitchFromUserDefaults];
       if ([self.name isEqualToString:kFIRDefaultAppName]) {
@@ -291,8 +280,6 @@ static NSMutableDictionary *sLibraryVersions;
     _name = [name copy];
     _options = [options copy];
     _options.editingLocked = YES;
-    _isDefaultApp = [name isEqualToString:kFIRDefaultAppName];
-    _container = [[FIRComponentContainer alloc] initWithApp:self];
 
     FIRApp *app = sAllApps[name];
     _alreadySentConfigureNotification = app.alreadySentConfigureNotification;
@@ -353,10 +340,10 @@ static NSMutableDictionary *sLibraryVersions;
   return [_options copy];
 }
 
-- (void)setDataCollectionDefaultEnabled:(BOOL)dataCollectionDefaultEnabled {
+- (void)setAutomaticDataCollectionEnabled:(BOOL)automaticDataCollectionEnabled {
   NSString *key =
       [NSString stringWithFormat:kFIRGlobalAppDataCollectionEnabledDefaultsKeyFormat, self.name];
-  [[NSUserDefaults standardUserDefaults] setBool:dataCollectionDefaultEnabled forKey:key];
+  [[NSUserDefaults standardUserDefaults] setBool:automaticDataCollectionEnabled forKey:key];
 
   // Core also controls the FirebaseAnalytics flag, so check if the Analytics flags are set
   // within FIROptions and change the Analytics value if necessary. Analytics only works with the
@@ -372,11 +359,11 @@ static NSMutableDictionary *sLibraryVersions;
 
   // The Analytics flag has not been explicitly set, so update with the value being set.
   [[FIRAnalyticsConfiguration sharedInstance]
-      setAnalyticsCollectionEnabled:dataCollectionDefaultEnabled
+      setAnalyticsCollectionEnabled:automaticDataCollectionEnabled
                      persistSetting:NO];
 }
 
-- (BOOL)isDataCollectionDefaultEnabled {
+- (BOOL)isAutomaticDataCollectionEnabled {
   // Check if it's been manually set before in code, and use that as the higher priority value.
   NSNumber *defaultsObject = [[self class] readDataCollectionSwitchFromUserDefaultsForApp:self];
   if (defaultsObject) {
@@ -397,7 +384,6 @@ static NSMutableDictionary *sLibraryVersions;
 #pragma mark - private
 
 + (void)sendNotificationsToSDKs:(FIRApp *)app {
-  // TODO: Remove this notification once all SDKs are registered with `FIRCoreConfigurable`.
   NSNumber *isDefaultApp = [NSNumber numberWithBool:(app == sDefaultApp)];
   NSDictionary *appInfoDict = @{
     kFIRAppNameKey : app.name,
@@ -407,12 +393,6 @@ static NSMutableDictionary *sLibraryVersions;
   [[NSNotificationCenter defaultCenter] postNotificationName:kFIRAppReadyToConfigureSDKNotification
                                                       object:self
                                                     userInfo:appInfoDict];
-
-  // This is the new way of sending information to SDKs.
-  // TODO: Do we want this on a background thread, maybe?
-  for (Class<FIRCoreConfigurable> library in gRegisteredAsConfigurable) {
-    [library configureWithApp:app];
-  }
 }
 
 + (NSError *)errorForMissingOptions {
@@ -448,18 +428,6 @@ static NSMutableDictionary *sLibraryVersions;
   return [NSError errorWithDomain:kFirebaseCoreErrorDomain
                              code:FIRErrorCodeInvalidAppID
                          userInfo:errorDict];
-}
-
-+ (void)registerAsConfigurable:(Class<FIRCoreConfigurable>)klass {
-  // This is called at +load time, keep the work to a minimum.
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    gRegisteredAsConfigurable = [[NSMutableArray alloc] initWithCapacity:1];
-  });
-
-  NSAssert([(Class)klass conformsToProtocol:@protocol(FIRCoreConfigurable)],
-           @"The class being registered (%@) must conform to `FIRCoreConfigurable`.", klass);
-  [gRegisteredAsConfigurable addObject:klass];
 }
 
 + (BOOL)isDefaultAppConfigured {
@@ -517,7 +485,6 @@ static NSMutableDictionary *sLibraryVersions;
   }
 }
 
-// TODO: Remove once SDKs transition to Auth interop library.
 - (nullable NSString *)getUID {
   if (!_getUIDImplementation) {
     FIRLogWarning(kFIRLoggerCore, @"I-COR000025", @"FIRAuth getUID implementation wasn't set.");
@@ -749,7 +716,7 @@ static NSMutableDictionary *sLibraryVersions;
                         version:(NSString *)version
                           error:(NSError *)error {
   // If the user has manually turned off data collection, return and don't send logs.
-  if (![self isDataCollectionDefaultEnabled]) {
+  if (![self isAutomaticDataCollectionEnabled]) {
     return;
   }
 

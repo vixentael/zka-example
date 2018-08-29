@@ -115,7 +115,6 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MGM-zm-au4">
                                                 <rect key="frame" x="12" y="44" width="576" height="407"/>
                                                 <color key="backgroundColor" red="0.3960784375667572" green="0.49019607901573181" blue="0.54509806632995605" alpha="0.047864136266094419" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="tintColor" red="0.28412482890000001" green="0.0" blue="0.62626627359999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="JqZ-YE-U4c"/>
                                                 </constraints>
@@ -230,7 +229,7 @@
                             <constraint firstItem="pho-ap-5Lg" firstAttribute="width" secondItem="wzW-Ls-kcW" secondAttribute="width" id="sPZ-YJ-1gq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Copy Public Key" id="rqU-hc-QQS">
+                    <navigationItem key="navigationItem" title="New Public Key" id="rqU-hc-QQS">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="fEV-4D-F8A"/>
                     </navigationItem>
                     <connections>
@@ -262,7 +261,6 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L81-zx-z24">
                                                 <rect key="frame" x="12" y="38" width="394" height="585"/>
                                                 <color key="backgroundColor" red="0.3960784376" green="0.49019607900000001" blue="0.54509806630000002" alpha="0.047864136270000003" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="tintColor" red="0.28412482890000001" green="0.0" blue="0.62626627359999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="5Rc-A7-8QT"/>
                                                 </constraints>
@@ -274,7 +272,6 @@
                                             </textView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9S-ZI-C4h">
                                                 <rect key="frame" x="12" y="4" width="414" height="30"/>
-                                                <color key="tintColor" red="0.28412482890000001" green="0.0" blue="0.62626627359999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no"/>
@@ -570,6 +567,7 @@
         <!--Shared Keys-->
         <scene sceneID="cIQ-zE-g3w">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GOV-G4-oaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Shares" id="hqJ-3B-E9g" userLabel="Shared Keys" customClass="SharedKeysViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iwC-ak-Mvx"/>
@@ -608,7 +606,6 @@
                         <segue destination="JQY-YR-KkD" kind="show" identifier="detail" id="d9R-RM-J8D"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GOV-G4-oaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2101.449275362319" y="2110.5978260869565"/>
         </scene>

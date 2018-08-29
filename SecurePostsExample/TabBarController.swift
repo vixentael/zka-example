@@ -26,10 +26,6 @@ class TabBarController: UITabBarController {
     
     NotificationCenter.default.addObserver(self, selector: #selector(signOut(_:)),
                                            name: Notification.Name(rawValue: "performSignOut"), object: nil)
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
     
     signInIfNeeded()
   }

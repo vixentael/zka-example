@@ -62,13 +62,11 @@ class NewShareViewController: UIViewController, UITextFieldDelegate {
       let user = AppUser(username: username)
 
       let recipientUserName = self.recipientTextField.text
-      let recipientPublicKey = self.recipientPublicKeyTextView.text
       
       // ENCRYPT OWN SK FOR RECIPIENT
-      var encryptedSKToSend = "Error in encrypting SK for user name \(String(describing: recipientUserName)), probably Public Key is not Base64"
-      if let recipientPublicKey = recipientPublicKey,
-        let pk = Key(base64String: recipientPublicKey),
-        let encryptedSK = try? self.encryptionEngine.encryptSecretKeyForUser(userPublicKey: pk) {
+      var encryptedSKToSend = "Error in encrypting SK for user \(String(describing: recipientUserName))"
+        if let encryptedSK = try? self.encryptionEngine.encryptSecretKeyForUser(userPublicKey:
+          Key(base64String: self.recipientPublicKeyTextView.text)!) {
         encryptedSKToSend = encryptedSK.base64String
       }
       
