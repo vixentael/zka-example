@@ -12,24 +12,15 @@ import Foundation
 extension EncryptionEngine {
   
   func encryptSecretKeyForUser(userPublicKey: Key) throws -> EncryptedData {
+    // TODO: implement encryption
+    return EncryptedData(data: userPublicKey.data)
+    
     // 1. get my private key
-    let myPrivateKey = try getMyPrivateKey()
     
     // 2. create Asym encryptor using own private key and other user' public key
-    guard let encrypter = TSMessage.init(inEncryptModeWithPrivateKey: myPrivateKey.data,
-                                         peerPublicKey: userPublicKey.data) else {
-                                          print("Error occurred while creating TSMessage Encryptor")
-                                          throw EncryptionError.cantCreateSecureMessage
-    }
-    
+
     
     // 3. encrypt own secret key for another user
-    do {
-        return EncryptedData(data: try encrypter.wrap(mySecretKey().data))
-    } catch let error as NSError {
-      print("Failed to encrypt own SK: error occurred while encrypting: \(error)")
-      throw EncryptionError.cantEncryptOwnSecretKey
-    }
   }
 }
 

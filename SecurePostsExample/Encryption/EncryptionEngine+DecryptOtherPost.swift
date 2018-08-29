@@ -42,28 +42,14 @@ extension EncryptionEngine {
   }
   
   func decryptAnyPost(encryptedPost: EncryptedData, secretKey: Key) throws -> String {
+    // TODO: implement decryption
+    return encryptedPost.base64String
+
     // 1. create decryptor with own secret key
-    guard let cellSeal = TSCellSeal(key: secretKey.data) else {
-        print("Failed to decrypt post: error occurred while initializing object cellSeal")
-        throw EncryptionError.cantCreateSecureCell
-    }
 
     // 2. decrypt encryptedPost
-    var decryptedMessage: Data = Data()
-    do {
-      decryptedMessage = try cellSeal.unwrapData(encryptedPost.data,
-                                                 context: nil)
-    } catch let error as NSError {
-      print("Failed to decrypt post: error occurred while decrypting: \(error)")
-      throw EncryptionError.cantDecryptPostBody
-    }
     
     // 3. encode decrypted post from Data to String
-    guard let decryptedBody = String(data: decryptedMessage, encoding: .utf8) else {
-      print("Failed to decrypt post: error occurred while encoding decrypted post body")
-      throw EncryptionError.cantEncodeDecryptedPostBody
-    }
-    return decryptedBody
   }
   
 }

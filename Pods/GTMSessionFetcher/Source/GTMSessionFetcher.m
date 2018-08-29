@@ -39,6 +39,7 @@ NSString *const kGTMSessionFetcherCompletionErrorKey = @"error";
 NSString *const kGTMSessionFetcherErrorDomain       = @"com.google.GTMSessionFetcher";
 NSString *const kGTMSessionFetcherStatusDomain      = @"com.google.HTTPStatus";
 NSString *const kGTMSessionFetcherStatusDataKey     = @"data";  // data returned with a kGTMSessionFetcherStatusDomain error
+NSString *const kGTMSessionFetcherStatusDataContentTypeKey = @"data_content_type";
 
 NSString *const kGTMSessionFetcherNumberOfRetriesDoneKey        = @"kGTMSessionFetcherNumberOfRetriesDoneKey";
 NSString *const kGTMSessionFetcherElapsedIntervalWithRetriesKey = @"kGTMSessionFetcherElapsedIntervalWithRetriesKey";
@@ -52,6 +53,9 @@ static NSString *const kGTMSessionIdentifierBodyFileURLMetadataKey        = @"_b
 static const NSTimeInterval kUnsetMaxRetryInterval = -1.0;
 static const NSTimeInterval kDefaultMaxDownloadRetryInterval = 60.0;
 static const NSTimeInterval kDefaultMaxUploadRetryInterval = 60.0 * 10.;
+
+// The maximum data length that can be loaded to the error userInfo
+static const int64_t kMaximumDownloadErrorDataLength = 20000;
 
 #ifdef GTMSESSION_PERSISTED_DESTINATION_KEY
 // Projects using unique class names should also define a unique persisted destination key.
@@ -121,6 +125,22 @@ static BOOL IsLocalhost(NSString * GTM_NULLABLE_TYPE host) {
           || [host isEqual:@"127.0.0.1"]);
 }
 
+static NSDictionary *GTM_NULLABLE_TYPE GTMErrorUserInfoForData(
+    NSData *GTM_NULLABLE_TYPE data, NSDictionary *GTM_NULLABLE_TYPE responseHeaders) {
+  NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+
+  if (data.length > 0) {
+    userInfo[kGTMSessionFetcherStatusDataKey] = data;
+
+    NSString *contentType = responseHeaders[@"Content-Type"];
+    if (contentType) {
+      userInfo[kGTMSessionFetcherStatusDataContentTypeKey] = contentType;
+    }
+  }
+
+  return userInfo.count > 0 ? userInfo : nil;
+}
+
 static GTMSessionFetcherTestBlock GTM_NULLABLE_TYPE gGlobalTestBlock;
 
 @implementation GTMSessionFetcher {
@@ -145,6 +165,7 @@ static GTMSessionFetcherTestBlock GTM_NULLABLE_TYPE gGlobalTestBlock;
   NSMutableData * GTM_NULLABLE_TYPE _downloadedData;
   NSError *_downloadFinishedError;
   NSData *_downloadResumeData;  // immutable after construction
+  NSData * GTM_NULLABLE_TYPE _downloadTaskErrorData; // Data for when download task fails
   NSURL *_destinationFileURL;
   int64_t _downloadedLength;
   NSURLCredential *_credential;     // username & password
@@ -756,8 +777,8 @@ static GTMSessionFetcherTestBlock GTM_NULLABLE_TYPE gGlobalTestBlock;
   if (_downloadResumeData) {
     newSessionTask = [_session downloadTaskWithResumeData:_downloadResumeData];
     GTMSESSION_ASSERT_DEBUG_OR_LOG(newSessionTask,
-        @"Failed downloadTaskWithResumeData for %@, resume data %tu bytes",
-        _session, _downloadResumeData.length);
+        @"Failed downloadTaskWithResumeData for %@, resume data %lu bytes",
+        _session, (unsigned long)_downloadResumeData.length);
   } else if (_destinationFileURL && !isDataRequest) {
     newSessionTask = [_session downloadTaskWithRequest:fetchRequest];
     GTMSESSION_ASSERT_DEBUG_OR_LOG(newSessionTask, @"Failed downloadTaskWithRequest for %@, %@",
@@ -780,8 +801,8 @@ static GTMSessionFetcherTestBlock GTM_NULLABLE_TYPE gGlobalTestBlock;
       newSessionTask = [_session uploadTaskWithRequest:fetchRequest
                                             fromData:(NSData * GTM_NONNULL_TYPE)_bodyData];
       GTMSESSION_ASSERT_DEBUG_OR_LOG(newSessionTask,
-          @"Failed uploadTaskWithRequest for %@, %@, body data %tu bytes",
-          _session, fetchRequest, _bodyData.length);
+          @"Failed uploadTaskWithRequest for %@, %@, body data %lu bytes",
+          _session, fetchRequest, (unsigned long)_bodyData.length);
     }
     needsDataAccumulator = YES;
   } else {
@@ -2656,12 +2677,18 @@ didFinishDownloadingToURL:(NSURL *)downloadLocationURL {
       // In OS X 10.11, the response body is written to a file even on a server
       // status error.  For convenience of the fetcher client, we'll skip saving the
       // downloaded body to the destination URL so that clients do not need to know
-      // to delete the file following fetch errors. A downside of this is that
-      // the server may have included error details in the response body, and
-      // abandoning the downloaded file here means that the details from the
-      // body are not available to the fetcher client.
+      // to delete the file following fetch errors.
       GTMSESSION_LOG_DEBUG(@"Abandoning download due to status %ld, file %@",
                            (long)statusCode, downloadLocationURL.path);
+
+      // On error code, add the contents of the temporary file to _downloadTaskErrorData
+      // This way fetcher clients have access to error details possibly passed by the server.
+      if (_downloadedLength > 0 && _downloadedLength <= kMaximumDownloadErrorDataLength) {
+        _downloadTaskErrorData = [NSData dataWithContentsOfURL:downloadLocationURL];
+      } else if (_downloadedLength > kMaximumDownloadErrorDataLength) {
+        GTMSESSION_LOG_DEBUG(@"Download error data for file %@ not passed to userInfo due to size "
+                             @"%lld", downloadLocationURL.path, _downloadedLength);
+      }
     } else {
       NSError *moveError;
       NSURL *destinationFolderURL = [destinationURL URLByDeletingLastPathComponent];
@@ -2861,11 +2888,10 @@ didCompleteWithError:(NSError *)error {
       } else {
         if (error == nil) {
           // Create an error.
-          NSDictionary *userInfo = nil;
-          if (_downloadedData.length > 0) {
-            NSMutableData *data = _downloadedData;
-            userInfo = @{ kGTMSessionFetcherStatusDataKey : data };
-          }
+          NSDictionary *userInfo = GTMErrorUserInfoForData(
+              _downloadedData.length > 0 ? _downloadedData : _downloadTaskErrorData,
+              [self responseHeadersUnsynchronized]);
+
           error = [NSError errorWithDomain:kGTMSessionFetcherStatusDomain
                                       code:status
                                   userInfo:userInfo];
@@ -3040,11 +3066,8 @@ didCompleteWithError:(NSError *)error {
     }
     BOOL canRetry = shouldRetryForAuthRefresh || forceAssumeRetry || shouldDoRetry;
     if (canRetry) {
-      NSDictionary *userInfo = nil;
-      if (_downloadedData.length > 0) {
-        NSMutableData *data = _downloadedData;
-        userInfo = @{ kGTMSessionFetcherStatusDataKey : data };
-      }
+      NSDictionary *userInfo =
+          GTMErrorUserInfoForData(_downloadedData, [self responseHeadersUnsynchronized]);
       NSError *statusError = [NSError errorWithDomain:kGTMSessionFetcherStatusDomain
                                                  code:status
                                              userInfo:userInfo];
@@ -4404,8 +4427,9 @@ NSString *GTMFetcherSystemVersionString(void) {
 // all clients to build with Xcode 9 or above.
       NSOperatingSystemVersion version = procInfo.operatingSystemVersion;
 #pragma clang diagnostic pop
-      versString = [NSString stringWithFormat:@"%zd.%zd.%zd",
-                    version.majorVersion, version.minorVersion, version.patchVersion];
+      versString = [NSString stringWithFormat:@"%ld.%ld.%ld",
+                    (long)version.majorVersion, (long)version.minorVersion,
+                    (long)version.patchVersion];
 #else
 #pragma unused(procInfo)
 #endif
@@ -4534,7 +4558,7 @@ NSString *GTMFetcherApplicationIdentifier(NSBundle * GTM_NULLABLE_TYPE bundle) {
       functionNamesCounter = [NSCountedSet set];
       counters[_objectKey] = functionNamesCounter;
     }
-    [functionNamesCounter addObject:@(functionName)];
+    [functionNamesCounter addObject:(id _Nonnull)@(functionName)];
   }
   return self;
 }
