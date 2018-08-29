@@ -158,6 +158,19 @@
   for (NSNumber *handle in _handles) {
     [_query removeObserverWithHandle:handle.unsignedIntegerValue];
   }
+
+  // Remove all values on invalidation.
+  [self didUpdate];
+  for (NSInteger i = 0; i < self.snapshots.count; /* no i++ since we modify the array instead */ ) {
+    FIRDataSnapshot *current = self.snapshots[i];
+
+    [self.snapshots removeObjectAtIndex:i];
+
+    if ([self.delegate respondsToSelector:@selector(array:didRemoveObject:atIndex:)]) {
+      [self.delegate array:self didRemoveObject:current atIndex:i];
+    }
+  }
+  [self didFinishUpdates];
 }
 
 - (NSUInteger)indexForKey:(NSString *)key {
@@ -256,7 +269,7 @@
   return [self snapshotAtIndex:index];
 }
 
-- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)index{
+- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)index {
   @throw [NSException exceptionWithName:@"FUIArraySetIndexWithSubscript"
                                  reason:@"Setting an object as FUIArray[i] is not supported."
                                userInfo:nil];
