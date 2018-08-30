@@ -60,13 +60,15 @@ class NewShareViewController: UIViewController, UITextFieldDelegate {
       let value = snapshot.value as? NSDictionary
       let username = value?["username"] as? String ?? ""
       let user = AppUser(username: username)
-
+      
       let recipientUserName = self.recipientTextField.text
+      let recipientPublicKey = self.recipientPublicKeyTextView.text
       
       // ENCRYPT OWN SK FOR RECIPIENT
-      var encryptedSKToSend = "Error in encrypting SK for user \(String(describing: recipientUserName))"
-        if let encryptedSK = try? self.encryptionEngine.encryptSecretKeyForUser(userPublicKey:
-          Key(base64String: self.recipientPublicKeyTextView.text)!) {
+      var encryptedSKToSend = "Error in encrypting SK for user name \(String(describing: recipientUserName)), probably Public Key is not Base64"
+      if let recipientPublicKey = recipientPublicKey,
+        let pk = Key(base64String: recipientPublicKey),
+        let encryptedSK = try? self.encryptionEngine.encryptSecretKeyForUser(userPublicKey: pk) {
         encryptedSKToSend = encryptedSK.base64String
       }
       
