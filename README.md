@@ -268,6 +268,16 @@ In our example we will use [Themis Secure Message](https://github.com/cossacklab
     }
 ```
 
+*Decode decrypted SK:*
+```swift
+    // 4. encode decrypted
+    guard let decryptedSKString = String(data: decryptedSecretKeyData, encoding: .utf8) else {
+      print("Failed to decrypt somebody's SK: error occurred while decoding decrypted SK")
+      throw EncryptionError.cantEncodeDecryptedPostBody
+    }
+    return decryptedSKString
+ ```
+
 See example in [Themis repo](https://github.com/cossacklabs/themis/blob/master/docs/examples/swift/ThemisSwift/ThemisSwift/Classes/AppDelegate.swift#L238).
 
 #### App code
