@@ -109,6 +109,16 @@ In our example we will use [Themis Secure Cell in Seal mode](https://github.com/
     }
 ```
 
+*Decode decrypted post:*
+```swift
+    // 3. encode decrypted post from Data to String
+    guard let decryptedBody = String(data: decryptedMessage, encoding: .utf8) else {
+      print("Failed to decrypt post: error occurred while encoding decrypted post body")
+      throw EncryptionError.cantEncodeDecryptedPostBody
+    }
+    return decryptedBody
+```
+
 See example in [Themis repo](https://github.com/cossacklabs/themis/blob/master/docs/examples/swift/ThemisSwift/ThemisSwift/Classes/AppDelegate.swift#L51).
 
 #### App code
